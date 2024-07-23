@@ -1,0 +1,50 @@
+plugins {
+    alias(libs.plugins.android.library)
+}
+
+android {
+    namespace 'com.libepoxy'
+    compileSdk versions.target_sdk
+    ndkVersion versions.ndk_version
+
+    defaultConfig {
+        minSdk versions.min_sdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+        ndk {
+            abiFilters = []
+            abiFilters.addAll(abi_filters)
+        }
+        externalNativeBuild {
+            ndkBuild {
+                cFlags  = build_flags.common_c_flags
+                cppFlags = build_flags.common_cpp_flags
+            }
+        }
+    }
+    externalNativeBuild {
+        ndkBuild {
+            path 'src/main/Android.mk'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildToolsVersion versions.build_tools_version
+}
+
+dependencies {
+
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}

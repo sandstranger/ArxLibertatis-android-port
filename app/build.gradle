@@ -5,14 +5,14 @@ plugins {
 
 android {
     namespace 'com.arxlibertatis'
-    compileSdk 34
+    compileSdk versions.target_sdk
 
     defaultConfig {
         applicationId "com.arxlibertatis"
-        minSdk 21
-        targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        minSdk versions.min_sdk
+        targetSdk versions.target_sdk
+        versionCode versions.app_version_code
+        versionName versions.app_version
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -44,10 +44,12 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    buildToolsVersion versions.build_tools_version
+    ndkVersion versions.ndk_version
 }
 
 dependencies {
-
+    implementation project(':libepoxy')
     implementation libs.androidx.core.ktx
     implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.activity.compose
