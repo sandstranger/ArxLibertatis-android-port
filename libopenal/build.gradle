@@ -1,0 +1,64 @@
+plugins {
+    alias(libs.plugins.android.library)
+}
+
+android {
+    namespace 'com.example.libopenal'
+    compileSdkVersion versions.target_sdk
+
+    defaultConfig {
+        minSdk 21
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        ndk {
+            abiFilters = []
+            abiFilters.addAll(abi_filters)
+        }
+        externalNativeBuild {
+            cmake {
+                arguments "-DANDROID_PLATFORM=android-$versions.native_android_platform_version",
+                        "-DCMAKE_C_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
+                        "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
+                        "-DALSOFT_EXAMPLES=OFF" ,"-DALSOFT_TESTS=OFF" ,"-DALSOFT_UTILS=OFF",
+                        "-DALSOFT_NO_CONFIG_UTIL=ON", "-DALSOFT_BACKEND_OPENSL=ON" ,"-DALSOFT_BACKEND_WAVE=OFF"
+                cFlags "-Wl,--strip-all" , "-ffast-math" , "-Wno-error=format-security"
+                cppFlags  "-Wl,--strip-all" , "-ffast-math" , "-fexceptions", "-frtti" ,"-Wno-error=format-security"
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            jniDebuggable true
+            debuggable true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    externalNativeBuild {
+        cmake {
+            path "src/main/jni/openal-soft/CMakeLists.txt"
+        }
+    }
+    buildToolsVersion versions.build_tools_version
+    ndkVersion '26.1.10909125'
+}
+
+dependencies {
+
+    implementation libs.androidx.appcompat
+    implementation libs.material
+    testImplementation libs.junit
+    androidTestImplementation libs.androidx.junit
+    androidTestImplementation libs.androidx.espresso.core
+}
