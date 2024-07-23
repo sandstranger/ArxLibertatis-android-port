@@ -6,7 +6,7 @@
 	url = https://github.com/freetype/freetype.git
 [submodule "glm/src/main/jni/glm"]
 	path = glm/src/main/jni/glm
-url=https://github.com/sandstranger/glm.git
+	url = https://github.com/g-truc/glm.git
 [submodule "zlib/src/main/jni/zlib"]
 	path = zlib/src/main/jni/zlib
 	url = https://github.com/sandstranger/zlib.git

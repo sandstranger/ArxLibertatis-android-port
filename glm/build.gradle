@@ -21,9 +21,10 @@ android {
             cmake {
                 arguments "-DANDROID_PLATFORM=android-$versions.native_android_platform_version",
                         "-DCMAKE_C_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
-                        "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG"
-                cFlags "-ffast-math" , "-Wno-error=format-security" , "-flto" , "-Wno-unsafe-buffer-usage", "-Wno-sign-compare", "-Wno-missing-variable-declarations", "-Wno-sign-conversion"
-                cppFlags "-ffast-math" , "-fexceptions", "-frtti" ,"-Wno-error=format-security", "-flto" , "-Wno-unsafe-buffer-usage", "-Wno-sign-compare", "-Wno-missing-variable-declarations", "-Wno-sign-conversion"
+                        "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
+                        "-DBUILD_SHARED_LIBS=ON", "-DGLM_ENABLE_FAST_MATH=ON"
+                cFlags  "-Wno-error=format-security" , "-flto" , "-Wno-unsafe-buffer-usage", "-Wno-sign-compare", "-Wno-missing-variable-declarations", "-Wno-sign-conversion"
+                cppFlags "-fexceptions", "-frtti" ,"-Wno-error=format-security", "-flto" , "-Wno-unsafe-buffer-usage", "-Wno-sign-compare", "-Wno-missing-variable-declarations", "-Wno-sign-conversion"
             }
         }
     }
