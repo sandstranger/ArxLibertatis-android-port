@@ -48,12 +48,14 @@ android {
     ndkVersion versions.ndk_version
 }
 
-preBuild.dependsOn ":libopenal:build", ":libepoxy:build", ":freetype2:build"
+preBuild.dependsOn ":libopenal:build", ":libepoxy:build", ":freetype2:build" ,
+        ":glm:build"
 
 dependencies {
     implementation project(':libepoxy')
     implementation project(':libopenal')
     implementation project(':freetype2')
+    implementation project(':glm')
     implementation libs.androidx.core.ktx
     implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.activity.compose

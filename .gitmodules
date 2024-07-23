@@ -4,3 +4,6 @@
 [submodule "freetype2/src/main/jni/freetype2"]
 	path = freetype2/src/main/jni/freetype2
 	url = https://github.com/freetype/freetype.git
+[submodule "glm/src/main/jni/glm"]
+	path = glm/src/main/jni/glm
+	url = https://github.com/g-truc/glm.git
