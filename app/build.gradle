@@ -49,13 +49,14 @@ android {
 }
 
 preBuild.dependsOn ":libopenal:build", ":libepoxy:build", ":freetype2:build" ,
-        ":glm:build"
+        ":glm:build",":zlib:build"
 
 dependencies {
     implementation project(':libepoxy')
     implementation project(':libopenal')
     implementation project(':freetype2')
     implementation project(':glm')
+    implementation project(':zlib')
     implementation libs.androidx.core.ktx
     implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.activity.compose
