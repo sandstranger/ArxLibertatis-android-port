@@ -5,7 +5,7 @@ buildscript {
             app_version: '1.21',
             min_sdk  : 21,
             target_sdk : 34,
-            ndk_version : '27.0.12077973',
+            ndk_version : '26.1.10909125',
             build_tools_version : '35.0.0',
             native_android_platform_version : 32
     ]
