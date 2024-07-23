@@ -1,3 +1,6 @@
 [submodule "libopenal/src/main/jni/openal-soft"]
 	path = libopenal/src/main/jni/openal-soft
 	url = https://github.com/kcat/openal-soft.git
+[submodule "freetype2/src/main/jni/freetype2"]
+	path = freetype2/src/main/jni/freetype2
+	url = https://github.com/freetype/freetype.git
