@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.4.1)
 
 set (WITH_OPENGL "epoxy")
 set (WITH_SDL "2")
-set (WITH_QT "")
 set (BUILD_TOOLS OFF)
+set (INSTALL_BLENDER_PLUGIN OFF)
 
 set(FREETYPE_LOCATION ${CMAKE_SOURCE_DIR}/freetype2)
 set(FREETYPE_INCLUDE_DIRS ${FREETYPE_LOCATION}/src/main/jni/freetype2/include)
