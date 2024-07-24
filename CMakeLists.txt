@@ -7,7 +7,6 @@ set (INSTALL_BLENDER_PLUGIN OFF)
 
 set(FREETYPE_LOCATION ${CMAKE_SOURCE_DIR}/freetype2)
 set(FREETYPE_INCLUDE_DIRS ${FREETYPE_LOCATION}/src/main/jni/freetype2/include)
-
 set(FREETYPE_LIBRARY ${FREETYPE_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libfreetype.so)
 
 set(EPOXY_LOCATION ${CMAKE_SOURCE_DIR}/libepoxy)
