@@ -10,3 +10,6 @@
 [submodule "zlib/src/main/jni/zlib"]
 	path = zlib/src/main/jni/zlib
 	url = https://github.com/sandstranger/zlib.git
+[submodule "sdl2"]
+	path = sdl2
+	url = https://github.com/sandstranger/SDL.git
