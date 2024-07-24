@@ -8,7 +8,12 @@ set (INSTALL_BLENDER_PLUGIN OFF)
 set(FREETYPE_LOCATION ${CMAKE_SOURCE_DIR}/freetype2)
 set(FREETYPE_INCLUDE_DIRS ${FREETYPE_LOCATION}/src/main/jni/freetype2/include)
 
-set(FREETYPE_LIBRARY ${FREETYPE_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libfreetype.so)
+if (CMAKE_BUILD_TYPE EQUAL "DEBUG")
+    set(FREETYPE_LIBRARY ${FREETYPE_LOCATION}/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/${ANDROID_ABI}/libfreetyped.so)
+else()
+    set(FREETYPE_LIBRARY ${FREETYPE_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libfreetype.so)
+endif ()
+
 
 set(EPOXY_LOCATION ${CMAKE_SOURCE_DIR}/libepoxy)
 set(Epoxy_INCLUDE_DIR ${EPOXY_LOCATION}/src/main/include)
