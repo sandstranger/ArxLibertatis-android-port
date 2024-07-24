@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.4.1)
 set (WITH_OPENGL "epoxy")
 set (WITH_SDL "2")
 set (WITH_QT "")
-
+set (BUILD_TOOLS OFF)
 string(TOLOWER ${CMAKE_BUILD_TYPE} ANDROID_BUILD_DIR)
 
 set(FREETYPE_LOCATION ${CMAKE_SOURCE_DIR}/freetype2)
@@ -22,7 +22,7 @@ set(OPENAL_LIBRARY ${OPENAL_LOCATION}/build/intermediates/merged_native_libs/rel
 
 set(SDL_LOCATION ${CMAKE_SOURCE_DIR}/sdl2)
 set(SDL2_INCLUDE_DIR ${SDL_LOCATION}/include)
-set(SDL2_LIBRARY ${SDL_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libSDL2.so)
+set(SDL2_LIBRARY ${SDL_LOCATION}/android-project/app/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libSDL2.so)
 
 set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/app/src/main/jni/include)
 
