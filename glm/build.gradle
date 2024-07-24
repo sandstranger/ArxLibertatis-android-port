@@ -12,21 +12,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
-
-        ndk {
-            abiFilters = []
-            abiFilters.addAll(abi_filters)
-        }
-        externalNativeBuild {
-            cmake {
-                arguments "-DANDROID_PLATFORM=android-$versions.native_android_platform_version",
-                        "-DCMAKE_C_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
-                        "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
-                        "-DBUILD_SHARED_LIBS=ON", "-DGLM_ENABLE_FAST_MATH=ON"
-                cFlags  "-Wno-error=format-security" , "-flto" , "-Wno-unsafe-buffer-usage", "-Wno-sign-compare", "-Wno-missing-variable-declarations", "-Wno-sign-conversion"
-                cppFlags "-fexceptions", "-frtti" ,"-Wno-error=format-security", "-flto" , "-Wno-unsafe-buffer-usage", "-Wno-sign-compare", "-Wno-missing-variable-declarations", "-Wno-sign-conversion"
-            }
-        }
     }
 
     buildTypes {
@@ -40,11 +25,6 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    externalNativeBuild {
-        cmake {
-            path "src/main/jni/glm/CMakeLists.txt"
-        }
-    }
     buildToolsVersion versions.build_tools_version
     ndkVersion versions.ndk_version
 }
