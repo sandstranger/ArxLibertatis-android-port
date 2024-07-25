@@ -22,11 +22,21 @@ set(Epoxy_LIBRARY ${EPOXY_LOCATION}/src/main/jniLibs/${ANDROID_ABI}/libepoxy.so)
 set(OPENAL_LOCATION ${CMAKE_SOURCE_DIR}/libopenal)
 set(OPENAL_INCLUDE_DIR ${OPENAL_LOCATION}/src/main/jni/openal-soft/include/AL)
 set(OPENAL_EFX_INCLUDE_DIR ${OPENAL_LOCATION}/src/main/jni/openal-soft/include/AL)
-set(OPENAL_LIBRARY ${OPENAL_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libopenal.so)
+
+if (CMAKE_BUILD_TYPE EQUAL "DEBUG")
+    set(OPENAL_LIBRARY ${OPENAL_LOCATION}/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/${ANDROID_ABI}/libopenal.so)
+else()
+    set(OPENAL_LIBRARY ${OPENAL_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libopenal.so)
+endif ()
 
 set(SDL_LOCATION ${CMAKE_SOURCE_DIR}/sdl2)
 set(SDL2_INCLUDE_DIR ${SDL_LOCATION}/include)
-set(SDL2_LIBRARY ${SDL_LOCATION}/android-project/app/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libSDL2.so)
+
+if (CMAKE_BUILD_TYPE EQUAL "DEBUG")
+    set(SDL2_LIBRARY ${SDL_LOCATION}/android-project/app/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/${ANDROID_ABI}/libSDL2.so)
+else()
+    set(SDL2_LIBRARY ${SDL_LOCATION}/android-project/app/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libSDL2.so)
+endif ()
 
 set(Boost_INCLUDE_DIR ${CMAKE_SOURCE_DIR}/app/src/main/jni/include)
 

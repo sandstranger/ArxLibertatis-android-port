@@ -23,8 +23,6 @@ android {
                         "-DBUILD_SHARED_LIBS=true",
                         "-DCMAKE_C_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
                         "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG"
-                cFlags "-Wl,--strip-all" , "-ffast-math" , "-Wno-error=format-security" , "-flto"
-                cppFlags  "-Wl,--strip-all" , "-ffast-math" , "-fexceptions", "-frtti" ,"-Wno-error=format-security", "-flto"
             }
         }
     }

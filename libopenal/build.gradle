@@ -20,12 +20,10 @@ android {
         externalNativeBuild {
             cmake {
                 arguments "-DANDROID_PLATFORM=android-$versions.native_android_platform_version",
-                        "-DCMAKE_C_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
-                        "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -fno-delete-null-pointer-checks -DNDEBUG",
+                        "-DCMAKE_C_FLAGS_RELEASE=-O3 -DNDEBUG",
+                        "-DCMAKE_CXX_FLAGS_RELEASE=-O3 -DNDEBUG",
                         "-DALSOFT_EXAMPLES=OFF" ,"-DALSOFT_TESTS=OFF" ,"-DALSOFT_UTILS=OFF",
                         "-DALSOFT_NO_CONFIG_UTIL=ON", "-DALSOFT_BACKEND_OPENSL=ON" ,"-DALSOFT_BACKEND_WAVE=OFF"
-                cFlags "-Wl,--strip-all" , "-ffast-math" , "-Wno-error=format-security" , "-flto"
-                cppFlags  "-Wl,--strip-all" , "-ffast-math" , "-fexceptions", "-frtti" ,"-Wno-error=format-security", "-flto"
             }
         }
     }
