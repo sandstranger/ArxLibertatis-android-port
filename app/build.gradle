@@ -44,6 +44,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.debug
         }
+        debug {
+            buildConfigField 'boolean', 'DEBUG', 'true'
+        }
+
+        release {
+            buildConfigField 'boolean', 'DEBUG', 'false'
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
