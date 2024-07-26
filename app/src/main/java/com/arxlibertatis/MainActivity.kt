@@ -36,7 +36,7 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-        requestPermission()
+//        requestPermission()
         startEngine(this)
     }
 
