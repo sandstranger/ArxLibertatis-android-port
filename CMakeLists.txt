@@ -4,6 +4,7 @@ set (USE_OPENGL ON)
 set (WITH_SDL "2")
 set (BUILD_TOOLS OFF)
 set (INSTALL_BLENDER_PLUGIN OFF)
+set (default_DEBUG OFF)
 
 set(FREETYPE_LOCATION ${CMAKE_SOURCE_DIR}/freetype2)
 set(FREETYPE_INCLUDE_DIRS ${FREETYPE_LOCATION}/src/main/jni/freetype2/include)
