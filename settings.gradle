@@ -21,9 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "Arx Libertatis"
 include ':app'
-include ':libepoxy'
 include ':libopenal'
 include ':freetype2'
 include ':glm'
 include ':zlib'
 include ':sdl2:android-project:app'
+include ':gl4es'

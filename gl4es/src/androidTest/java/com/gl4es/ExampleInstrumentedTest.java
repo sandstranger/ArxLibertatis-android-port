@@ -1,4 +1,4 @@
-package com.example.libepoxy;
+package com.gl4es;
 
 import android.content.Context;
 
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-        assertEquals("com.example.libepoxy.test", appContext.getPackageName());
+        assertEquals("com.gl4es.test", appContext.getPackageName());
     }
 }

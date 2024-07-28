@@ -1,4 +1,4 @@
-package com.example.libepoxy;
+package com.gl4es;
 
 import org.junit.Test;
 

@@ -16,3 +16,6 @@
 [submodule "app/src/main/jni/ArxLibertatis"]
 	path = app/src/main/jni/ArxLibertatis
 	url = https://github.com/sandstranger/ArxLibertatis.git
+[submodule "gl4es/src/main/jni/gl4es"]
+	path = gl4es/src/main/jni/gl4es
+	url = https://github.com/sandstranger/gl4es.git

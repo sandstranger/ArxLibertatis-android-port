@@ -75,16 +75,16 @@ android {
     ndkVersion versions.ndk_version
 }
 
-preBuild.dependsOn ":libopenal:build", ":libepoxy:build", ":freetype2:build" ,
+preBuild.dependsOn ":libopenal:build", ":freetype2:build",":gl4es:build",
         ":glm:build",":zlib:build",':sdl2:android-project:app:build'
 
 dependencies {
-    implementation project(':libepoxy')
     implementation project(':libopenal')
     implementation project(':freetype2')
     implementation project(':glm')
     implementation project(':zlib')
     implementation project(':sdl2:android-project:app')
+    implementation project(':gl4es')
     implementation libs.androidx.core.ktx
     implementation libs.androidx.lifecycle.runtime.ktx
     implementation libs.androidx.activity.compose
