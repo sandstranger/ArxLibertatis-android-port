@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-set (WITH_OPENGL "epoxy")
+set (USE_OPENGL ON)
 set (WITH_SDL "2")
 set (BUILD_TOOLS OFF)
 set (INSTALL_BLENDER_PLUGIN OFF)
@@ -14,20 +14,15 @@ else()
     set(FREETYPE_LIBRARY ${FREETYPE_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libfreetype.so)
 endif ()
 
-
-set(EPOXY_LOCATION ${CMAKE_SOURCE_DIR}/libepoxy)
-set(Epoxy_INCLUDE_DIR ${EPOXY_LOCATION}/src/main/include)
-set(Epoxy_LIBRARY ${EPOXY_LOCATION}/src/main/jniLibs/${ANDROID_ABI}/libepoxy.so)
+set(OPENGL_LOCATION ${CMAKE_SOURCE_DIR}/gl4es)
+set(OPENGL_INCLUDE_DIR ${OPENGL_LOCATION}/src/main/jni/gl4es/include)
+set(OPENGL_opengl_LIBRARY ${OPENGL_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libGL.so)
+set(OPENGL_glx_LIBRARY ${OPENGL_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libGL.so)
 
 set(OPENAL_LOCATION ${CMAKE_SOURCE_DIR}/libopenal)
 set(OPENAL_INCLUDE_DIR ${OPENAL_LOCATION}/src/main/jni/openal-soft/include/AL)
 set(OPENAL_EFX_INCLUDE_DIR ${OPENAL_LOCATION}/src/main/jni/openal-soft/include/AL)
-
-if (CMAKE_BUILD_TYPE EQUAL "DEBUG")
-    set(OPENAL_LIBRARY ${OPENAL_LOCATION}/build/intermediates/merged_native_libs/debug/mergeDebugNativeLibs/out/lib/${ANDROID_ABI}/libopenal.so)
-else()
-    set(OPENAL_LIBRARY ${OPENAL_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libopenal.so)
-endif ()
+set(OPENAL_LIBRARY ${OPENAL_LOCATION}/build/intermediates/merged_native_libs/release/mergeReleaseNativeLibs/out/lib/${ANDROID_ABI}/libopenal.so)
 
 set(SDL_LOCATION ${CMAKE_SOURCE_DIR}/sdl2)
 set(SDL2_INCLUDE_DIR ${SDL_LOCATION}/include)
