@@ -42,7 +42,6 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
         }
         debug {
             buildConfigField 'boolean', 'DEBUG', 'true'
@@ -50,6 +49,11 @@ android {
 
         release {
             buildConfigField 'boolean', 'DEBUG', 'false'
+        }
+
+        debug {
+            jniDebuggable true
+            debuggable true
         }
     }
     compileOptions {
