@@ -62,6 +62,7 @@
             android:configChanges="layoutDirection|locale|orientation|uiMode|screenLayout|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
             android:preferMinimalPostProcessing="true"
             android:exported="true"
+            tools:ignore="DiscouragedApi"
             >
             <!-- Let Android know that we can handle some USB devices and should receive this event -->
             <intent-filter>
