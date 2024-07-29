@@ -9,11 +9,25 @@ import org.libsdl.app.SDLActivity
 
 class EngineActivity : SDLActivity () {
 
+    external fun resumeSound()
+
+    external fun pauseSound()
+
     override fun getMainSharedObject() = MAIN_ENGINE_NATIVE_LIB
 
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
 
     override fun getMainFunction() = "SDL_main"
+
+    override fun onPause() {
+        super.onPause()
+        pauseSound()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        resumeSound()
+    }
 
     override fun onDestroy() {
         super.onDestroy()
