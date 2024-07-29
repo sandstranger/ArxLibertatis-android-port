@@ -9,9 +9,9 @@ import org.libsdl.app.SDLActivity
 
 class EngineActivity : SDLActivity () {
 
-    external fun resumeSound()
+    private external fun resumeSound()
 
-    external fun pauseSound()
+    private external fun pauseSound()
 
     override fun getMainSharedObject() = MAIN_ENGINE_NATIVE_LIB
 
