@@ -1,26 +1,29 @@
 package com.arxlibertatis.ui.fragment
 
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.arxlibertatis.R
+import com.arxlibertatis.databinding.MainFragmentBinding
 import com.arxlibertatis.interfaces.MainFragmentView
 import com.arxlibertatis.presenter.MainFragmentPresenter
 import com.arxlibertatis.single.fragment.SingleFragment
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.presenter.InjectPresenter
 
-internal class MainFragment : SingleFragment(), MainFragmentView {
-
+internal class MainFragment : SingleFragment<MainFragmentBinding>(), MainFragmentView {
     @InjectPresenter
     lateinit var presenter: MainFragmentPresenter
 
-    override fun layoutResourceId(): Int = R.layout.main_fragment
-
     override fun bindView(view: View) {
-        val startGameButton = view.findViewById<FloatingActionButton>(R.id.startGameButton)
-        startGameButton.setOnClickListener {
+        binding.startGameButton.setOnClickListener {
             presenter.onStartGameBtnClicked(requireContext())
         }
+    }
+
+    override fun inflateView(inflater: LayoutInflater, container: ViewGroup?) {
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
     }
 
     companion object {
