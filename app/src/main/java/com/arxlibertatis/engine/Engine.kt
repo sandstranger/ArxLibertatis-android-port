@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Environment
 import android.os.Process
 import android.system.Os
+import android.util.Log
 import com.arxlibertatis.engine.activity.EngineActivity
 import com.arxlibertatis.utils.extensions.startActivity
 

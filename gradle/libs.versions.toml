@@ -1,19 +1,31 @@
 [versions]
-agp = "8.5.0"
+agp = "8.5.1"
+cardview = "1.0.0"
+constraintlayout = "2.1.4"
+daggerAndroid = "2.51.1"
+daggerAndroidSupport = "2.51.1"
+daggerAndroidProcessor = "2.51.1"
 kotlin = "1.9.0"
-coreKtx = "1.10.1"
+coreKtx = "1.13.1"
 junit = "4.13.2"
-junitVersion = "1.1.5"
-espressoCore = "3.5.1"
+junitVersion = "1.2.1"
+espressoCore = "3.6.1"
 kotlinxCoroutinesCore = "1.8.1"
-lifecycleRuntimeKtx = "2.6.1"
-activityCompose = "1.8.0"
-composeBom = "2024.04.01"
-appcompat = "1.6.1"
-material = "1.10.0"
+lifecycleRuntimeKtx = "2.8.4"
+activityCompose = "1.9.1"
+composeBom = "2024.06.00"
+appcompat = "1.7.0"
+material = "1.12.0"
+moxyAndroidx = "2.2.2"
+moxyCompiler = "2.2.2"
 
 [libraries]
+androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
+androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "daggerAndroidProcessor" }
+dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "daggerAndroidSupport" }
+dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "daggerAndroid" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -31,6 +43,8 @@ androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib" }
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+moxy-androidx = { module = "com.github.moxy-community:moxy-androidx", version.ref = "moxyAndroidx" }
+moxy-compiler = { module = "com.github.moxy-community:moxy-compiler", version.ref = "moxyCompiler" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
