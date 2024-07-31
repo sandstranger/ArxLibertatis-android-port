@@ -13,17 +13,17 @@ abstract class SingleFragment <T> : MvpAppCompatFragment() where T : ViewBinding
 
     protected var _binding: T? = null
 
-    protected val binding get() = _binding!!
+    private val binding get() = _binding!!
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         inflateView(inflater,container)
         val view = binding.root
-        bindView(view)
+        bindView(view, binding)
         return view
     }
 
     protected abstract fun inflateView (inflater: LayoutInflater,container: ViewGroup?)
 
-    protected abstract fun bindView(view: View)
+    protected abstract fun bindView(view: View, binding: T)
 }

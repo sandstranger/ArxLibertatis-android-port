@@ -4,19 +4,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.arxlibertatis.R
 import com.arxlibertatis.databinding.MainFragmentBinding
 import com.arxlibertatis.interfaces.MainFragmentView
 import com.arxlibertatis.presenter.MainFragmentPresenter
 import com.arxlibertatis.single.fragment.SingleFragment
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import moxy.presenter.InjectPresenter
 
 internal class MainFragment : SingleFragment<MainFragmentBinding>(), MainFragmentView {
     @InjectPresenter
     lateinit var presenter: MainFragmentPresenter
 
-    override fun bindView(view: View) {
+    override fun bindView(view: View, binding: MainFragmentBinding) {
         binding.startGameButton.setOnClickListener {
             presenter.onStartGameBtnClicked(requireContext())
         }
