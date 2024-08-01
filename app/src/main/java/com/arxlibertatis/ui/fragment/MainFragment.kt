@@ -8,6 +8,7 @@ import com.arxlibertatis.databinding.MainFragmentBinding
 import com.arxlibertatis.interfaces.MainFragmentView
 import com.arxlibertatis.presenter.MainFragmentPresenter
 import com.arxlibertatis.single.fragment.SingleFragment
+import com.arxlibertatis.utils.extensions.requestExternalStoragePermission
 import moxy.presenter.InjectPresenter
 
 internal class MainFragment : SingleFragment<MainFragmentBinding>(), MainFragmentView {
@@ -18,6 +19,7 @@ internal class MainFragment : SingleFragment<MainFragmentBinding>(), MainFragmen
         binding.startGameButton.setOnClickListener {
             presenter.onStartGameBtnClicked(requireContext())
         }
+        requireActivity().requestExternalStoragePermission()
     }
 
     override fun inflateView(inflater: LayoutInflater, container: ViewGroup?) {
