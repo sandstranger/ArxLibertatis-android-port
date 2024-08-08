@@ -6,7 +6,9 @@ import com.arxlibertatis.engine.MAIN_ENGINE_NATIVE_LIB
 import com.arxlibertatis.engine.debugJniLibsArray
 import com.arxlibertatis.engine.jniLibsArray
 import com.arxlibertatis.engine.killEngine
+import com.arxlibertatis.engine.setFullscreen
 import org.libsdl.app.SDLActivity
+
 
 class EngineActivity : SDLActivity () {
 
@@ -18,9 +20,8 @@ class EngineActivity : SDLActivity () {
 
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
 
-    override fun getMainFunction() = "SDL_main"
-
     override fun onCreate(savedInstanceState: Bundle?) {
+        setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
     }
 
