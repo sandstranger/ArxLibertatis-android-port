@@ -33,7 +33,7 @@ internal class MainActivity : MvpAppCompatActivity(), MainActivityView {
         if (fragment == null) {
             fragment = SettingsFragment()
             supportFragmentManager.beginTransaction().apply {
-                replace(R.id.fragments_container, fragment)
+                replace(fragmentContainterResId, fragment)
                 commit()
             }
         }

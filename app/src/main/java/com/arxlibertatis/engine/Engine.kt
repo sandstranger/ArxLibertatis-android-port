@@ -13,7 +13,7 @@ import com.arxlibertatis.utils.extensions.startActivity
 
 internal val debugJniLibsArray= arrayOf("GL", "SDL2","freetyped","z","openal","arx")
 internal val jniLibsArray= arrayOf("GL", "SDL2","freetype","z","openal","arx")
-internal val ARX_DATA_PATH = Environment.getExternalStorageDirectory().path + "/arx/"
+internal val DEFAULT_ARX_DATA_PATH = Environment.getExternalStorageDirectory().path + "/arx/"
 
 @Suppress("DEPRECATION")
 internal fun setFullscreen(decorView: View) {
@@ -29,11 +29,10 @@ internal fun setFullscreen(decorView: View) {
 fun killEngine() = Process.killProcess(Process.myPid())
 
 fun startEngine(context: Context) {
-    Os.setenv("LIBGL_ES", "2", true)
-
     val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-    val gamePath  = prefs.getString(GAME_FILES_SHARED_PREFS_KEY, ARX_DATA_PATH)
+    val gamePath  = prefs.getString(GAME_FILES_SHARED_PREFS_KEY, DEFAULT_ARX_DATA_PATH)
     Os.setenv(ARX_DATA_PATH_KEY, gamePath, true)
+    Os.setenv("LIBGL_ES", "2", true)
     context.startActivity<EngineActivity>()
 }
 
