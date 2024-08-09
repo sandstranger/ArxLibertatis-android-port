@@ -3,23 +3,23 @@ package com.arxlibertatis.ui.fragment
 import android.app.Activity
 import android.content.Intent
 import android.content.Intent.createChooser
-import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import com.arxlibertatis.R
 import com.arxlibertatis.presenter.SettingsFragmentPresenter
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
+import moxy.MvpView
+import moxy.presenter.InjectPresenter
 
-class SettingsFragment : PreferenceFragmentCompat(){
+class SettingsFragment : MvpAppCompatFragment(), MvpView{
 
     private val CHOOSE_DIRECTORY_REQUEST_CODE = 4321
 
-    private lateinit var presenter: SettingsFragmentPresenter
+    @InjectPresenter
+    lateinit var presenter: SettingsFragmentPresenter
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         addPreferencesFromResource(R.xml.settings)
-        presenter = SettingsFragmentPresenter { key -> updatePreference(key) }
 
         val gameFilesPreference = findPreference<Preference>(GAME_FILES_SHARED_PREFS_KEY)
         gameFilesPreference?.setOnPreferenceClickListener {
@@ -37,7 +37,12 @@ class SettingsFragment : PreferenceFragmentCompat(){
         when{
             resultCode != Activity.RESULT_OK -> return
             requestCode == CHOOSE_DIRECTORY_REQUEST_CODE ->
+            {
+                if (presenter.sharedPrefsChanged == null) {
+                    presenter.sharedPrefsChanged = { key -> updatePreference(key) }
+                }
                 presenter.saveGamePath(data!!, requireContext(), this@SettingsFragment.preferenceScreen.sharedPreferences!!)
+            }
         }
     }
 
