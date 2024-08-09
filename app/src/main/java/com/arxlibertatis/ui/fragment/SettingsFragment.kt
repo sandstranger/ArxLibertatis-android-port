@@ -23,9 +23,11 @@ class SettingsFragment : PreferenceFragmentCompat(){
 
         val gameFilesPreference = findPreference<Preference>(GAME_FILES_SHARED_PREFS_KEY)
         gameFilesPreference?.setOnPreferenceClickListener {
-            val i = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
-            i.addCategory(Intent.CATEGORY_DEFAULT)
-            startActivityForResult(createChooser(i, "Choose directory"), CHOOSE_DIRECTORY_REQUEST_CODE)
+            with(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)) {
+                addCategory(Intent.CATEGORY_DEFAULT)
+                startActivityForResult(createChooser(this, "Choose directory"),
+                    CHOOSE_DIRECTORY_REQUEST_CODE)
+            }
             true
         }
         updatePreference(gameFilesPreference!!,GAME_FILES_SHARED_PREFS_KEY)
@@ -39,9 +41,8 @@ class SettingsFragment : PreferenceFragmentCompat(){
         }
     }
 
-    private fun updatePreference (prefsKey : String){
-        findPreference<Preference>(prefsKey)?.summary = preferenceScreen.sharedPreferences?.getString(prefsKey, "") ?: ""
-    }
+    private fun updatePreference (prefsKey : String) =
+        updatePreference(findPreference(prefsKey)!!,prefsKey)
 
     private fun updatePreference (preference: Preference, prefsKey: String){
         preference.summary = preferenceScreen.sharedPreferences?.getString(prefsKey, "") ?: ""
