@@ -2,11 +2,11 @@ package com.arxlibertatis.engine.activity
 
 import android.os.Bundle
 import com.arxlibertatis.BuildConfig
-import com.arxlibertatis.engine.MAIN_ENGINE_NATIVE_LIB
 import com.arxlibertatis.engine.debugJniLibsArray
 import com.arxlibertatis.engine.jniLibsArray
 import com.arxlibertatis.engine.killEngine
 import com.arxlibertatis.engine.setFullscreen
+import com.arxlibertatis.utils.MAIN_ENGINE_NATIVE_LIB
 import org.libsdl.app.SDLActivity
 
 
