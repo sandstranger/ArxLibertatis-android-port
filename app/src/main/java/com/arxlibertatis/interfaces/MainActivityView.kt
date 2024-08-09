@@ -2,5 +2,5 @@ package com.arxlibertatis.interfaces
 
 import moxy.MvpView
 
-interface MainFragmentView : MvpView {
+interface MainActivityView : MvpView {
 }

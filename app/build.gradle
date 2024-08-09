@@ -50,6 +50,7 @@ android {
 
         release {
             buildConfigField 'boolean', 'DEBUG', 'false'
+            signingConfig signingConfigs.debug
         }
 
         debug {
@@ -103,6 +104,8 @@ dependencies {
     kapt libs.moxy.compiler
 
     //support libs
+    implementation libs.androidx.fragment.ktx
+    implementation libs.androidx.preference.ktx
     implementation libs.material
     implementation libs.androidx.cardview
     implementation libs.androidx.appcompat

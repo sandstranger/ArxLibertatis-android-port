@@ -5,6 +5,7 @@ constraintlayout = "2.1.4"
 daggerAndroid = "2.51.1"
 daggerAndroidSupport = "2.51.1"
 daggerAndroidProcessor = "2.51.1"
+fragmentKtx = "1.8.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
 junit = "4.13.2"
@@ -18,11 +19,15 @@ appcompat = "1.7.0"
 material = "1.12.0"
 moxyAndroidx = "2.2.2"
 moxyCompiler = "2.2.2"
+preferenceKtx = "1.2.1"
+databindingRuntime = "8.5.1"
 
 [libraries]
 androidx-cardview = { module = "androidx.cardview:cardview", version.ref = "cardview" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
+androidx-fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+androidx-preference-ktx = { module = "androidx.preference:preference-ktx", version.ref = "preferenceKtx" }
 dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "daggerAndroidProcessor" }
 dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "daggerAndroidSupport" }
 dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "daggerAndroid" }
@@ -45,6 +50,7 @@ kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-c
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 moxy-androidx = { module = "com.github.moxy-community:moxy-androidx", version.ref = "moxyAndroidx" }
 moxy-compiler = { module = "com.github.moxy-community:moxy-compiler", version.ref = "moxyCompiler" }
+androidx-databinding-runtime = { group = "androidx.databinding", name = "databinding-runtime", version.ref = "databindingRuntime" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

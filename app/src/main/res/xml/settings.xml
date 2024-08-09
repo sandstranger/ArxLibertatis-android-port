@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        android:title="@string/general_settings">
+        <Preference
+            android:key="game_files"
+            android:title="@string/game_files" />
+    </PreferenceCategory>
+</PreferenceScreen>
