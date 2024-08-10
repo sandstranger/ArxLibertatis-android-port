@@ -11,11 +11,10 @@ buildscript {
     ]
 
     ext.build_flags = [
-            common_c_flags : ["-O3", "-Wl,--strip-all","-ffast-math"],
-            common_cpp_flags : ["-O3" ,"-Wl,--strip-all", "-std=c++17","-ffast-math"],
+            common_c_flags : ["-O3","-flto=thin","-ffast-math"],
+            common_cpp_flags : ["-O3" ,"-flto=thin", "-std=c++17","-ffast-math"],
             ndk_build_args : "APP_PLATFORM=android-$versions.native_android_platform_version"
     ]
-
     ext.abi_filters = ['armeabi-v7a','arm64-v8a',"x86","x86_64"]
 
     ext.rootDir = rootProject.rootDir
