@@ -38,9 +38,7 @@ class SettingsFragment : MvpAppCompatFragment(), MvpView{
             resultCode != Activity.RESULT_OK -> return
             requestCode == CHOOSE_DIRECTORY_REQUEST_CODE ->
             {
-                if (presenter.sharedPrefsChanged == null) {
-                    presenter.sharedPrefsChanged = { key -> updatePreference(key) }
-                }
+                presenter.sharedPrefsChanged = { key -> updatePreference(key) }
                 presenter.saveGamePath(data!!, requireContext(), this@SettingsFragment.preferenceScreen.sharedPreferences!!)
             }
         }
