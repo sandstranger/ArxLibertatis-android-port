@@ -4,6 +4,10 @@ import android.app.Activity
 import android.content.Intent
 import android.content.Intent.createChooser
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import androidx.preference.Preference
 import com.arxlibertatis.R
 import com.arxlibertatis.presenter.SettingsFragmentPresenter
@@ -19,7 +23,9 @@ class SettingsFragment : MvpAppCompatFragment(), MvpView{
     lateinit var presenter: SettingsFragmentPresenter
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        super.onCreatePreferences(savedInstanceState, rootKey)
         addPreferencesFromResource(R.xml.settings)
+        presenter.init(preferenceScreen.sharedPreferences!!, requireContext(),{ key -> updatePreference(key) })
 
         val gameFilesPreference = findPreference<Preference>(GAME_FILES_SHARED_PREFS_KEY)
         gameFilesPreference?.setOnPreferenceClickListener {
@@ -31,6 +37,22 @@ class SettingsFragment : MvpAppCompatFragment(), MvpView{
             true
         }
         updatePreference(gameFilesPreference!!,GAME_FILES_SHARED_PREFS_KEY)
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId){
+            R.id.copy_game_assets -> {
+                presenter.copyGameAssets()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -38,8 +60,7 @@ class SettingsFragment : MvpAppCompatFragment(), MvpView{
             resultCode != Activity.RESULT_OK -> return
             requestCode == CHOOSE_DIRECTORY_REQUEST_CODE ->
             {
-                presenter.sharedPrefsChanged = { key -> updatePreference(key) }
-                presenter.saveGamePath(data!!, requireContext(), this@SettingsFragment.preferenceScreen.sharedPreferences!!)
+                presenter.saveGamePath(data!!)
             }
         }
     }

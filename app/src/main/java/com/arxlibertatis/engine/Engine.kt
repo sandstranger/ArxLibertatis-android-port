@@ -8,7 +8,10 @@ import android.view.View
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.engine.activity.EngineActivity
 import com.arxlibertatis.utils.ARX_DATA_PATH_KEY
+import com.arxlibertatis.utils.GAME_ASSETS_WERE_COPIED_PREFS_KEY
+import com.arxlibertatis.utils.GAME_FILES_FOLDER_NAME
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
+import com.arxlibertatis.utils.copyGameAssets
 import com.arxlibertatis.utils.extensions.startActivity
 
 internal val debugJniLibsArray= arrayOf("GL", "SDL2","freetyped","z","openal","arx")
@@ -31,6 +34,18 @@ fun killEngine() = Process.killProcess(Process.myPid())
 fun startEngine(context: Context) {
     val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     val gamePath  = prefs.getString(GAME_FILES_SHARED_PREFS_KEY, DEFAULT_ARX_DATA_PATH)
+    val assetsWereCopied = prefs.getBoolean(GAME_ASSETS_WERE_COPIED_PREFS_KEY, false)
+
+    if (!assetsWereCopied){
+
+        copyGameAssets(context, GAME_FILES_FOLDER_NAME, gamePath!!)
+
+        with(prefs.edit()){
+            putBoolean(GAME_ASSETS_WERE_COPIED_PREFS_KEY, true)
+            apply()
+        }
+    }
+
     Os.setenv(ARX_DATA_PATH_KEY, gamePath, true)
     Os.setenv("LIBGL_ES", "2", true)
     context.startActivity<EngineActivity>()

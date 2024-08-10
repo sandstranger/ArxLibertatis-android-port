@@ -2,4 +2,5 @@
     <string name="app_name">Arx Libertatis</string>
     <string name="game_files">Game files</string>
     <string name="general_settings">General settings</string>
+    <string name="copy_game_assets">Copy game assets</string>
 </resources>

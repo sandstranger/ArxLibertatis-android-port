@@ -23,7 +23,7 @@ public class MvpAppCompatFragment extends PreferenceFragmentCompat implements Mv
 
     @Override
     public void onCreatePreferences(@Nullable Bundle savedInstanceState, @Nullable String rootKey) {
-
+        getMvpDelegate().onCreate(savedInstanceState);
     }
 
     @ContentView
