@@ -33,19 +33,7 @@ fun killEngine() = Process.killProcess(Process.myPid())
 
 fun startEngine(context: Context) {
     val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-    val gamePath  = prefs.getString(GAME_FILES_SHARED_PREFS_KEY, DEFAULT_ARX_DATA_PATH)
-    val assetsWereCopied = prefs.getBoolean(GAME_ASSETS_WERE_COPIED_PREFS_KEY, false)
-
-    if (!assetsWereCopied){
-
-        copyGameAssets(context, GAME_FILES_FOLDER_NAME, gamePath!!)
-
-        with(prefs.edit()){
-            putBoolean(GAME_ASSETS_WERE_COPIED_PREFS_KEY, true)
-            apply()
-        }
-    }
-
+    val gamePath  = prefs.getString(GAME_FILES_SHARED_PREFS_KEY, "")
     Os.setenv(ARX_DATA_PATH_KEY, gamePath, true)
     Os.setenv("LIBGL_ES", "2", true)
     context.startActivity<EngineActivity>()
