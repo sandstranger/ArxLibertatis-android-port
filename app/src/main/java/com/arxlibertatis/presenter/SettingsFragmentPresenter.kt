@@ -36,9 +36,9 @@ class SettingsFragmentPresenter : MvpPresenter<MvpView>() {
             uri,
             DocumentsContract.getTreeDocumentId(uri)
         )
-
+        currentGamePath = getPath(context, docUri)
+        copyGameAssets()
         with(prefs.edit()) {
-            currentGamePath = getPath(context, docUri)
             putString(GAME_FILES_SHARED_PREFS_KEY, currentGamePath)
             apply()
             onSharedPrefsChanged?.invoke(GAME_FILES_SHARED_PREFS_KEY)
