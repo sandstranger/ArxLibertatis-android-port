@@ -3,13 +3,13 @@ package com.arxlibertatis.ui.activity
 import android.os.Bundle
 import com.arxlibertatis.R
 import com.arxlibertatis.databinding.MainActivityBinding
-import com.arxlibertatis.interfaces.MainActivityView
 import com.arxlibertatis.presenter.MainActivityPresenter
 import com.arxlibertatis.ui.fragment.SettingsFragment
 import moxy.MvpAppCompatActivity
+import moxy.MvpView
 import moxy.presenter.InjectPresenter
 
-internal class MainActivity : MvpAppCompatActivity(), MainActivityView {
+internal class MainActivity : MvpAppCompatActivity(), MvpView {
     @InjectPresenter
     lateinit var presenter: MainActivityPresenter
 
