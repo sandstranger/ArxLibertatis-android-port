@@ -4,8 +4,10 @@ import android.app.Activity
 import android.graphics.Color
 import android.util.DisplayMetrics
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.R
@@ -15,36 +17,35 @@ const val VIRTUAL_SCREEN_WIDTH = 1024
 const val VIRTUAL_SCREEN_HEIGHT = 768
 const val CONTROL_DEFAULT_SIZE = 70
 
-class ScreenControlsManager (val screenControlsBinding: ScreenControlsBinding,
-    val activity : Activity) {
+class ScreenControlsManager (
+    private val screenControlsBinding: ScreenControlsBinding,
+    private val activity : Activity) {
 
-    private lateinit var callbalck : ConfigureCallback
     private val controlsItems = arrayListOf<ControlsItem>()
-    private lateinit var screenSize: ScreenSize
+    private val screenSize: ScreenSize = getScreenSize()
+    private val joystickHolder : JoystickHolder = JoystickHolder(screenControlsBinding.joystick)
 
     init {
-        screenSize = getScreenSize()
-        screenControlsBinding.joystick.setPadBackground(R.drawable.joystick_background)
-        screenControlsBinding.joystick.setButtonDrawable(R.drawable.joystick_stick)
-        screenControlsBinding.joystick.enable = false
+        joystickHolder.joystick.enable = false
 
-        controlsItems += ControlsItem ("joystick",screenControlsBinding.joystick,
+        controlsItems += ControlsItem ("joystick",joystickHolder.joystick,
             30, 330, 280)
 
-        val callback = ConfigureCallback(screenSize)
-
         controlsItems.forEach {
-            it.view.setOnTouchListener(callback)
             it.loadPrefs()
         }
     }
 
     fun editScreenControls (){
+        controlsItems.forEach {
+            val callback = ConfigureCallback(screenSize)
+            it.view.setOnTouchListener(callback)
+        }
         screenControlsBinding.screenControlsRoot.setBackgroundColor(Color.GRAY)
     }
 
     fun enableScreenControls (){
-        screenControlsBinding.joystick.enable = true
+        joystickHolder.joystick.enable = true
         screenControlsBinding.touchCamera.visibility = View.VISIBLE
     }
 
