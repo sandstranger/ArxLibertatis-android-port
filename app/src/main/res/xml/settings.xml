@@ -9,7 +9,7 @@
     </PreferenceCategory>
 
     <PreferenceCategory
-        android:title="@string/general_settings">
+        android:title="@string/user_interface">
         <Preference
             android:key="screen_controls_settings"
             android:title="@string/configure_screen_controls" />
