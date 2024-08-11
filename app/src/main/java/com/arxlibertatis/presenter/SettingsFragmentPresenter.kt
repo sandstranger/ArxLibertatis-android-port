@@ -5,16 +5,21 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.provider.DocumentsContract
 import com.arxlibertatis.interfaces.SettingsFragmentMvpView
+import com.arxlibertatis.ui.activity.ConfigureControlsActivity
 import com.arxlibertatis.utils.ASFUriHelper.getPath
-import com.arxlibertatis.utils.GAME_ASSETS_WERE_COPIED_PREFS_KEY
 import com.arxlibertatis.utils.GAME_FILES_FOLDER_NAME
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
 import com.arxlibertatis.utils.copyGameAssets
+import com.arxlibertatis.utils.extensions.startActivity
 import moxy.InjectViewState
 import moxy.MvpPresenter
 
 @InjectViewState
 class SettingsFragmentPresenter : MvpPresenter<SettingsFragmentMvpView>() {
+
+    fun onConfigureScreenControlsClicked (context: Context){
+        context.startActivity<ConfigureControlsActivity>(finishParentActivity = false)
+    }
 
     fun saveGamePath(data: Intent, context: Context, preferences: SharedPreferences) {
         val uri = data.data
@@ -23,10 +28,12 @@ class SettingsFragmentPresenter : MvpPresenter<SettingsFragmentMvpView>() {
             DocumentsContract.getTreeDocumentId(uri)
         )
 
+        val currentGamePath = getPath(context, docUri)
+
         with(preferences.edit()) {
-            putString(GAME_FILES_SHARED_PREFS_KEY, getPath(context, docUri))
+            putString(GAME_FILES_SHARED_PREFS_KEY, currentGamePath)
             apply()
-            copyGameAssets(context,preferences)
+            copyGameAssets(context, GAME_FILES_FOLDER_NAME, currentGamePath)
             viewState?.updatePreference(GAME_FILES_SHARED_PREFS_KEY)
         }
     }
@@ -39,9 +46,5 @@ class SettingsFragmentPresenter : MvpPresenter<SettingsFragmentMvpView>() {
         }
 
         copyGameAssets(context, GAME_FILES_FOLDER_NAME, currentGamePath)
-        with(preferences.edit()){
-            putBoolean(GAME_ASSETS_WERE_COPIED_PREFS_KEY, true)
-            apply()
-        }
     }
 }

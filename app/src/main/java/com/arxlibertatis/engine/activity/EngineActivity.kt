@@ -1,7 +1,10 @@
 package com.arxlibertatis.engine.activity
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import com.arxlibertatis.BuildConfig
+import com.arxlibertatis.R
 import com.arxlibertatis.engine.debugJniLibsArray
 import com.arxlibertatis.engine.jniLibsArray
 import com.arxlibertatis.engine.killEngine
@@ -23,6 +26,15 @@ class EngineActivity : SDLActivity () {
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
+
+        val inflater: LayoutInflater = this.layoutInflater
+        this.window.addContentView(
+            inflater.inflate(R.layout.screen_controls, null),
+            ViewGroup.LayoutParams(
+                ViewGroup.LayoutParams.MATCH_PARENT,
+                ViewGroup.LayoutParams.MATCH_PARENT
+            )
+        )
     }
 
     override fun onPause() {

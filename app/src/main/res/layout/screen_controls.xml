@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/screen_controls_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.arxlibertatis.ui.controls.views.TouchCamera
+        android:id="@+id/touchCamera"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="match_parent" />
+
+    <com.arxlibertatis.ui.controls.views.JoyStick
+        android:id="@+id/joystick"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="bottom|left" />
+
+</FrameLayout>

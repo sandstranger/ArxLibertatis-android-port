@@ -6,5 +6,8 @@
         <Preference
             android:key="game_files"
             android:title="@string/game_files" />
+        <Preference
+            android:key="screen_controls_settings"
+            android:title="@string/configure_screen_controls" />
     </PreferenceCategory>
 </PreferenceScreen>

@@ -15,6 +15,7 @@ import com.arxlibertatis.R
 import com.arxlibertatis.interfaces.SettingsFragmentMvpView
 import com.arxlibertatis.presenter.SettingsFragmentPresenter
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
+import com.arxlibertatis.utils.extensions.startActivity
 import moxy.MvpView
 import moxy.presenter.InjectPresenter
 
@@ -28,6 +29,7 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView{
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         super.onCreatePreferences(savedInstanceState, rootKey)
         addPreferencesFromResource(R.xml.settings)
+
         val gameFilesPreference = findPreference<Preference>(GAME_FILES_SHARED_PREFS_KEY)
         gameFilesPreference?.setOnPreferenceClickListener {
             with(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)) {
@@ -38,6 +40,12 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView{
             true
         }
         updatePreference(gameFilesPreference!!,GAME_FILES_SHARED_PREFS_KEY)
+
+        findPreference<Preference>("screen_controls_settings")?.setOnPreferenceClickListener {
+            presenter.onConfigureScreenControlsClicked(requireContext())
+            true
+        }
+
         setHasOptionsMenu(true)
     }
 
