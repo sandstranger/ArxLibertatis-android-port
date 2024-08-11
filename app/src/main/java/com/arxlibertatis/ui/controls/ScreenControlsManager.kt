@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.preference.PreferenceManager
+import androidx.transition.Visibility
 import com.arxlibertatis.R
 import com.arxlibertatis.databinding.ScreenControlsBinding
 
@@ -21,13 +22,13 @@ class ScreenControlsManager (
     private val screenControlsBinding: ScreenControlsBinding,
     private val activity : Activity) {
 
+    private var callback : ConfigureCallback? = null
     private val controlsItems = arrayListOf<ControlsItem>()
     private val screenSize: ScreenSize = getScreenSize()
     private val joystickHolder : JoystickHolder = JoystickHolder(screenControlsBinding.joystick)
 
     init {
         joystickHolder.joystick.enable = false
-
         controlsItems += ControlsItem ("joystick",joystickHolder.joystick,
             30, 330, 280)
 
@@ -37,16 +38,38 @@ class ScreenControlsManager (
     }
 
     fun editScreenControls (){
+        callback = ConfigureCallback(screenSize)
         controlsItems.forEach {
-            val callback = ConfigureCallback(screenSize)
             it.view.setOnTouchListener(callback)
         }
+        screenControlsBinding.buttonsHolder.visibility = View.VISIBLE
         screenControlsBinding.screenControlsRoot.setBackgroundColor(Color.GRAY)
     }
 
     fun enableScreenControls (){
         joystickHolder.joystick.enable = true
+        screenControlsBinding.buttonsHolder.visibility = View.GONE
         screenControlsBinding.touchCamera.visibility = View.VISIBLE
+    }
+    
+    fun changeOpacity(delta: Float) {
+        val view = callback?.currentView ?: return
+        val el =  view.tag as ControlsItem
+        el.changeOpacity(delta)
+        el.updateView()
+    }
+
+    fun changeSize(delta: Int) {
+        val view = callback?.currentView ?: return
+        val el =  view.tag as ControlsItem
+        el.changeSize(delta)
+        el.updateView()
+    }
+
+    fun resetItems (){
+        controlsItems.forEach {
+            it.resetPrefs()
+        }
     }
 
     private fun getScreenSize () : ScreenSize {

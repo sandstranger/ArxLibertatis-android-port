@@ -6,8 +6,17 @@
         <Preference
             android:key="game_files"
             android:title="@string/game_files" />
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/general_settings">
         <Preference
             android:key="screen_controls_settings"
             android:title="@string/configure_screen_controls" />
+        <CheckBoxPreference
+            android:key="hide_screen_controls"
+            android:defaultValue="false"
+            android:title="@string/hide_screen_controls" />
     </PreferenceCategory>
+
 </PreferenceScreen>

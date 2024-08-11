@@ -17,7 +17,6 @@ class JoystickHolder (val joystick : JoyStick) : JoyStick.JoyStickListener {
     }
 
     override fun onMove(joyStick: JoyStick?, angle: Double, power: Double, direction: Int) {
-        Log.d("PARAMS", direction.toString())
         if (previousDirection != direction){
             onKeysUp()
         }

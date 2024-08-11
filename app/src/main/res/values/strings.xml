@@ -2,6 +2,14 @@
     <string name="app_name">Arx Libertatis</string>
     <string name="game_files">Game files</string>
     <string name="general_settings">General settings</string>
+    <string name="user_interface">User interface</string>
     <string name="copy_game_assets">Reset game assets</string>
+    <string name="hide_screen_controls">Hide screen controls</string>
     <string name="configure_screen_controls">Configure screen controls</string>
+    <string name="btn_back">Back</string>
+    <string name="btn_opacityPlus">Alpha+</string>
+    <string name="btn_opacityMinus">Alpha-</string>
+    <string name="btn_sizePlus">Size+</string>
+    <string name="btn_sizeMinus">Size-</string>
+    <string name="btn_resetControlsLayout">Reset to defaults</string>
 </resources>

@@ -8,13 +8,73 @@
     <com.arxlibertatis.ui.controls.views.TouchCamera
         android:id="@+id/touchCamera"
         android:layout_width="match_parent"
-        android:visibility="gone"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/buttons_holder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnOpacityPlus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickOpacityPlus"
+                android:text="@string/btn_opacityPlus" />
+
+            <Button
+                android:id="@+id/btnOpacityMinus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickOpacityMinus"
+                android:text="@string/btn_opacityMinus" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnSizePlus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickSizePlus"
+                android:text="@string/btn_sizePlus" />
+
+            <Button
+                android:id="@+id/btnSizeMinus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="clickSizeMinus"
+                android:text="@string/btn_sizeMinus" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clickResetControls"
+            android:text="@string/btn_resetControlsLayout" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="clickBack"
+            android:text="@string/btn_back" />
+    </LinearLayout>
 
     <com.arxlibertatis.ui.controls.views.JoyStick
         android:id="@+id/joystick"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_gravity="bottom|left" />
-
 </FrameLayout>
