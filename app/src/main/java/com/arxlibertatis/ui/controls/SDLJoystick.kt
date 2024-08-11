@@ -1,12 +1,11 @@
 package com.arxlibertatis.ui.controls
 
-import android.util.Log
 import android.view.KeyEvent
 import com.arxlibertatis.R
 import com.arxlibertatis.ui.controls.views.JoyStick
 import org.libsdl.app.SDLActivity
 
-class JoystickHolder (val joystick : JoyStick) : JoyStick.JoyStickListener {
+class SDLJoystick (val joystick : JoyStick) : JoyStick.JoyStickListener {
     private var previousDirection = JoyStick.DIRECTION_CENTER
 
     init {
@@ -21,7 +20,7 @@ class JoystickHolder (val joystick : JoyStick) : JoyStick.JoyStickListener {
             onKeysUp()
         }
         when(direction){
-            JoyStick.DIRECTION_CENTER -> this@JoystickHolder.onKeysUp()
+            JoyStick.DIRECTION_CENTER -> this@SDLJoystick.onKeysUp()
             JoyStick.DIRECTION_DOWN -> moveDown()
             JoyStick.DIRECTION_DOWN_LEFT -> moveDownLeft()
             JoyStick.DIRECTION_RIGHT_DOWN -> moveDownRight()

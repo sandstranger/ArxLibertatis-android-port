@@ -24,7 +24,7 @@ class ScreenControlsManager (
     private var callback : ConfigureCallback? = null
     private val controlsItems = arrayListOf<ControlsItem>()
     private val screenSize: ScreenSize = getScreenSize()
-    private val joystickHolder : JoystickHolder = JoystickHolder(screenControlsBinding.joystick)
+    private val joystickHolder : SDLJoystick = SDLJoystick(screenControlsBinding.joystick)
 
     init {
         joystickHolder.joystick.enable = false
