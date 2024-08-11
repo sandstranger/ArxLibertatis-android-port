@@ -52,6 +52,8 @@ public class JoyStick extends View implements GestureDetector.OnGestureListener,
     public static final int TYPE_2_AXIS_LEFT_RIGHT = 33;
     public static final int TYPE_2_AXIS_UP_DOWN = 44;
 
+    public boolean enable = false;
+
     private JoyStickListener listener;
     private Paint paint;
     private RectF temp;
@@ -173,6 +175,10 @@ public class JoyStick extends View implements GestureDetector.OnGestureListener,
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if (!enable){
+            return false;
+        }
+
         gestureDetector.onTouchEvent(event);
 
         switch (event.getAction()) {
