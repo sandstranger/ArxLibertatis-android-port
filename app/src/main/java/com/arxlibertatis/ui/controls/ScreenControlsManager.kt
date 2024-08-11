@@ -2,17 +2,16 @@ package com.arxlibertatis.ui.controls
 
 import android.app.Activity
 import android.graphics.Color
+import android.os.Build
 import android.util.DisplayMetrics
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
+import android.view.WindowManager
+import android.view.WindowMetrics
 import android.widget.FrameLayout
 import androidx.preference.PreferenceManager
-import androidx.transition.Visibility
-import com.arxlibertatis.R
 import com.arxlibertatis.databinding.ScreenControlsBinding
+
 
 const val VIRTUAL_SCREEN_WIDTH = 1024
 const val VIRTUAL_SCREEN_HEIGHT = 768
@@ -51,7 +50,7 @@ class ScreenControlsManager (
         screenControlsBinding.buttonsHolder.visibility = View.GONE
         screenControlsBinding.touchCamera.visibility = View.VISIBLE
     }
-    
+
     fun changeOpacity(delta: Float) {
         val view = callback?.currentView ?: return
         val el =  view.tag as ControlsItem
@@ -72,10 +71,16 @@ class ScreenControlsManager (
         }
     }
 
-    private fun getScreenSize () : ScreenSize {
-        val displayMetrics = DisplayMetrics();
-        activity.windowManager.defaultDisplay.getMetrics(displayMetrics);
-        return ScreenSize(displayMetrics.widthPixels, displayMetrics.heightPixels)
+    private fun getScreenSize(): ScreenSize {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            val metrics: WindowMetrics =
+                activity.getSystemService(WindowManager::class.java).currentWindowMetrics
+            return ScreenSize(metrics.bounds.width(), metrics.bounds.height())
+        } else {
+            val displayMetrics = DisplayMetrics();
+            activity.windowManager.defaultDisplay.getMetrics(displayMetrics);
+            return ScreenSize(displayMetrics.widthPixels, displayMetrics.heightPixels)
+        }
     }
 
     private inner class ControlsItem (val uniqueId: String,
