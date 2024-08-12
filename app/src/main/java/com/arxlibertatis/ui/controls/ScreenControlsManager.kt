@@ -4,6 +4,7 @@ import android.app.Activity
 import android.graphics.Color
 import android.os.Build
 import android.util.DisplayMetrics
+import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
@@ -19,6 +20,7 @@ const val VIRTUAL_SCREEN_HEIGHT = 768
 const val CONTROL_DEFAULT_SIZE = 70
 
 private const val MIDDLE_MOUSE_BUTTON_ID = 2
+private const val RIGHT_MOUSE_BUTTON_ID = 3
 
 class ScreenControlsManager (
     private val screenControlsBinding: ScreenControlsBinding,
@@ -36,6 +38,12 @@ class ScreenControlsManager (
             30, 330, 280)
         controlsItems +=ControlsItem ("attack_button",screenControlsBinding.attackButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
             730, 310, 130)
+        controlsItems +=ControlsItem ("sneak_button",screenControlsBinding.sneakButton.setKeycode(KeyEvent.KEYCODE_C),
+            870, 10, 70)
+        controlsItems +=ControlsItem ("pause_button",screenControlsBinding.pauseButton.setKeycode(KeyEvent.KEYCODE_ESCAPE),
+            940, 10, 70)
+        controlsItems +=ControlsItem ("inventory_button",screenControlsBinding.inventoryButton.setKeycode(RIGHT_MOUSE_BUTTON_ID),
+            940, 130, 70)
 
         controlsItems.forEach {
             it.loadPrefs()
