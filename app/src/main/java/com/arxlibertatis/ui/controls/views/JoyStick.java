@@ -93,6 +93,7 @@ public class JoyStick extends View implements GestureDetector.OnGestureListener,
         void onTap();
 
         void onDoubleTap();
+
     }
 
     public JoyStick(Context context) {

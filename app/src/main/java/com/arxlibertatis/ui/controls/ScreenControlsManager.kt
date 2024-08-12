@@ -11,11 +11,14 @@ import android.view.WindowMetrics
 import android.widget.FrameLayout
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.databinding.ScreenControlsBinding
+import com.arxlibertatis.ui.controls.views.SDLImageButton
 
 
 const val VIRTUAL_SCREEN_WIDTH = 1024
 const val VIRTUAL_SCREEN_HEIGHT = 768
 const val CONTROL_DEFAULT_SIZE = 70
+
+private const val MIDDLE_MOUSE_BUTTON_ID = 3
 
 class ScreenControlsManager (
     private val screenControlsBinding: ScreenControlsBinding,
@@ -28,8 +31,11 @@ class ScreenControlsManager (
 
     init {
         joystickHolder.joystick.enable = false
+
         controlsItems += ControlsItem ("joystick",joystickHolder.joystick,
             30, 330, 280)
+        controlsItems +=ControlsItem ("attack_button",screenControlsBinding.attackButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
+            730, 310, 130)
 
         controlsItems.forEach {
             it.loadPrefs()
@@ -40,6 +46,10 @@ class ScreenControlsManager (
         callback = ConfigureCallback(screenSize)
         controlsItems.forEach {
             it.view.setOnTouchListener(callback)
+
+            if (it.view is SDLImageButton){
+                it.view.interactable = false
+            }
         }
         screenControlsBinding.buttonsHolder.visibility = View.VISIBLE
         screenControlsBinding.screenControlsRoot.setBackgroundColor(Color.GRAY)
@@ -117,7 +127,7 @@ class ScreenControlsManager (
         }
 
         fun updateView() {
-            val v = view ?: return
+            val v = view
             val realScreenWidth = this@ScreenControlsManager.screenSize.width
             val realScreenHeight = this@ScreenControlsManager.screenSize.height
             val realX = x * realScreenWidth / VIRTUAL_SCREEN_WIDTH
@@ -135,7 +145,7 @@ class ScreenControlsManager (
         }
 
         private fun savePrefs() {
-            val v = view ?: return
+            val v = view
             val prefs = PreferenceManager.getDefaultSharedPreferences(v.context)
             with (prefs.edit()) {
                 putFloat("osc:$uniqueId:opacity", opacity)
