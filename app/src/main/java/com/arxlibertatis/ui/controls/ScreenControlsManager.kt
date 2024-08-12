@@ -38,6 +38,8 @@ class ScreenControlsManager (
             30, 330, 280)
         controlsItems +=ControlsItem ("attack_button",screenControlsBinding.attackButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
             800, 310, 130)
+        controlsItems +=ControlsItem ("drop_weapon_button",screenControlsBinding.dropWeaponButton.setKeycode(KeyEvent.KEYCODE_B),
+            700, 310, 70)
         controlsItems +=ControlsItem ("sneak_button",screenControlsBinding.sneakButton.setKeycode(KeyEvent.KEYCODE_C),
             870, 10, 70)
         controlsItems +=ControlsItem ("pause_button",screenControlsBinding.pauseButton.setKeycode(KeyEvent.KEYCODE_ESCAPE),
@@ -45,7 +47,11 @@ class ScreenControlsManager (
         controlsItems +=ControlsItem ("inventory_button",screenControlsBinding.inventoryButton.setKeycode(RIGHT_MOUSE_BUTTON_ID),
             940, 130, 70)
         controlsItems +=ControlsItem ("use_button",screenControlsBinding.useButton.setKeycode(KeyEvent.KEYCODE_F),
-            850, 130, 70)
+            870, 130, 70)
+        controlsItems +=ControlsItem ("turn_left_button",screenControlsBinding.turnLeftButton.setKeycode(KeyEvent.KEYCODE_Q),
+            700, 130, 70)
+        controlsItems +=ControlsItem ("turn_right_button",screenControlsBinding.turnRightButton.setKeycode(KeyEvent.KEYCODE_E),
+            790, 130, 70)
         controlsItems +=ControlsItem ("load_button",screenControlsBinding.quickLoadButton.setKeycode(KeyEvent.KEYCODE_F9),
             810, 10, 70)
         controlsItems +=ControlsItem ("save_button",screenControlsBinding.quickSaveButton.setKeycode(KeyEvent.KEYCODE_F5),
