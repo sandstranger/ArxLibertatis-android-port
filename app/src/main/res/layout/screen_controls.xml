@@ -144,6 +144,33 @@
         android:layout_gravity="right"
         android:src="@drawable/toggle_weapon" />
 
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/jump_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/jump" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/use_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/use_down" />
+
+    <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
+        android:id="@+id/walk_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/run" />
+
     <com.arxlibertatis.ui.controls.views.ToggleMouseSDLButton
         android:id="@+id/toggle_use_button"
         android:layout_width="100dp"

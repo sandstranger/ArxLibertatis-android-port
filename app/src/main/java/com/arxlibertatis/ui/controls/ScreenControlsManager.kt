@@ -44,16 +44,22 @@ class ScreenControlsManager (
             940, 10, 70)
         controlsItems +=ControlsItem ("inventory_button",screenControlsBinding.inventoryButton.setKeycode(RIGHT_MOUSE_BUTTON_ID),
             940, 130, 70)
+        controlsItems +=ControlsItem ("use_button",screenControlsBinding.useButton.setKeycode(KeyEvent.KEYCODE_F),
+            850, 130, 70)
         controlsItems +=ControlsItem ("load_button",screenControlsBinding.quickLoadButton.setKeycode(KeyEvent.KEYCODE_F9),
             810, 10, 70)
         controlsItems +=ControlsItem ("save_button",screenControlsBinding.quickSaveButton.setKeycode(KeyEvent.KEYCODE_F5),
             760, 10, 70)
-        controlsItems +=ControlsItem ("use_button",screenControlsBinding.toggleUseButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
+        controlsItems +=ControlsItem ("toggle_use_button",screenControlsBinding.toggleUseButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
             940, 250, 70)
         controlsItems +=ControlsItem ("toggle_magic_button",screenControlsBinding.toggleMagicButton.setKeycode(KeyEvent.KEYCODE_CTRL_LEFT),
             950, 390, 70)
         controlsItems +=ControlsItem ("toggle_weapon_button",screenControlsBinding.toggleWeaponButton.setKeycode(KeyEvent.KEYCODE_TAB),
-            950, 530, 70)
+            930, 530, 70)
+        controlsItems +=ControlsItem ("jump_button",screenControlsBinding.jumpButton.setKeycode(KeyEvent.KEYCODE_SPACE),
+            830, 570, 70)
+        controlsItems +=ControlsItem ("walk_button",screenControlsBinding.walkButton.setKeycode(KeyEvent.KEYCODE_SHIFT_LEFT),
+            730, 570, 70)
 
         controlsItems.forEach {
             it.loadPrefs()
