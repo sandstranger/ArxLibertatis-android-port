@@ -44,6 +44,10 @@ class ScreenControlsManager (
             940, 10, 70)
         controlsItems +=ControlsItem ("inventory_button",screenControlsBinding.inventoryButton.setKeycode(RIGHT_MOUSE_BUTTON_ID),
             940, 130, 70)
+        controlsItems +=ControlsItem ("load_button",screenControlsBinding.quickLoadButton.setKeycode(KeyEvent.KEYCODE_F9),
+            810, 10, 70)
+        controlsItems +=ControlsItem ("save_button",screenControlsBinding.quickSaveButton.setKeycode(KeyEvent.KEYCODE_F5),
+            760, 10, 70)
 
         controlsItems.forEach {
             it.loadPrefs()

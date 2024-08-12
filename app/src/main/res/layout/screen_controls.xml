@@ -108,6 +108,24 @@
         android:layout_gravity="right"
         android:src="@drawable/inventory" />
 
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/quick_save_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/save" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/quick_load_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/load" />
+
     <com.arxlibertatis.ui.controls.views.JoyStick
         android:id="@+id/joystick"
         android:layout_width="200dp"
