@@ -44,6 +44,16 @@ class ScreenControlsManager (
             870, 10, 70)
         controlsItems +=ControlsItem ("pause_button",screenControlsBinding.pauseButton.setKeycode(KeyEvent.KEYCODE_ESCAPE),
             940, 10, 70)
+        controlsItems +=ControlsItem ("hide_extra_btns_button",screenControlsBinding.hideExtraBtnsButton,
+            70, 10, 70)
+        controlsItems +=ControlsItem ("character_stats_button",screenControlsBinding.showCharacterStatsButton.setKeycode(KeyEvent.KEYCODE_F1),
+            140, 10, 70)
+        controlsItems +=ControlsItem ("show_map_button",screenControlsBinding.showMapButton.setKeycode(KeyEvent.KEYCODE_F3),
+            210, 10, 70)
+        controlsItems +=ControlsItem ("show_spells_button",screenControlsBinding.showSpellsButton.setKeycode(KeyEvent.KEYCODE_F2),
+            280, 10, 70)
+        controlsItems +=ControlsItem ("show_notes_button",screenControlsBinding.showNotesButton.setKeycode(KeyEvent.KEYCODE_F4),
+            350, 10, 70)
         controlsItems +=ControlsItem ("inventory_button",screenControlsBinding.inventoryButton.setKeycode(RIGHT_MOUSE_BUTTON_ID),
             940, 130, 70)
         controlsItems +=ControlsItem ("use_button",screenControlsBinding.useButton.setKeycode(KeyEvent.KEYCODE_F),

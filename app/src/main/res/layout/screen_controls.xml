@@ -198,6 +198,51 @@
         android:layout_gravity="right"
         android:src="@drawable/run" />
 
+    <ImageButton
+        android:id="@+id/hide_extra_btns_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/toggle" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/show_character_stats_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/run" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/show_map_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/map" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/show_spells_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/show_spells" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/show_notes_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/notebook" />
+
     <com.arxlibertatis.ui.controls.views.ToggleMouseSDLButton
         android:id="@+id/toggle_use_button"
         android:layout_width="100dp"
