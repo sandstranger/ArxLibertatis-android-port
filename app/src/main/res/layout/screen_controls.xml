@@ -207,6 +207,15 @@
         android:layout_gravity="right"
         android:src="@drawable/toggle" />
 
+    <ImageButton
+        android:id="@+id/hide_all_btns_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/toggle" />
+
     <com.arxlibertatis.ui.controls.views.SDLImageButton
         android:id="@+id/show_character_stats_button"
         android:layout_width="100dp"
@@ -242,6 +251,34 @@
         android:background="@null"
         android:layout_gravity="right"
         android:src="@drawable/notebook" />
+
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/health_potion_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/health_potion" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/magic_potion_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/magic_potion" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/torch_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/torch" />
 
     <com.arxlibertatis.ui.controls.views.ToggleMouseSDLButton
         android:id="@+id/toggle_use_button"

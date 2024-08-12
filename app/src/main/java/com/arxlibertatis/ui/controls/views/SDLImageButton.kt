@@ -10,7 +10,7 @@ import org.libsdl.app.SDLActivity
 open class SDLImageButton (context: Context, attrs : AttributeSet) : AppCompatImageButton(context, attrs), View.OnTouchListener {
 
     var interactable : Boolean = true
-
+    var isSpecialBtn : Boolean = false
     protected var keyCode : Int = 0
 
     init {
