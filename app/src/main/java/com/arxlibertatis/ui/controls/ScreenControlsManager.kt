@@ -18,7 +18,7 @@ const val VIRTUAL_SCREEN_WIDTH = 1024
 const val VIRTUAL_SCREEN_HEIGHT = 768
 const val CONTROL_DEFAULT_SIZE = 70
 
-private const val MIDDLE_MOUSE_BUTTON_ID = 3
+private const val MIDDLE_MOUSE_BUTTON_ID = 2
 
 class ScreenControlsManager (
     private val screenControlsBinding: ScreenControlsBinding,
