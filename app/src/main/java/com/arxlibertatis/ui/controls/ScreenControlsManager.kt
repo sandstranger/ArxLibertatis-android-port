@@ -37,7 +37,7 @@ class ScreenControlsManager (
         controlsItems += ControlsItem ("joystick",joystickHolder.joystick,
             30, 330, 280)
         controlsItems +=ControlsItem ("attack_button",screenControlsBinding.attackButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
-            730, 310, 130)
+            800, 310, 130)
         controlsItems +=ControlsItem ("sneak_button",screenControlsBinding.sneakButton.setKeycode(KeyEvent.KEYCODE_C),
             870, 10, 70)
         controlsItems +=ControlsItem ("pause_button",screenControlsBinding.pauseButton.setKeycode(KeyEvent.KEYCODE_ESCAPE),
@@ -48,6 +48,12 @@ class ScreenControlsManager (
             810, 10, 70)
         controlsItems +=ControlsItem ("save_button",screenControlsBinding.quickSaveButton.setKeycode(KeyEvent.KEYCODE_F5),
             760, 10, 70)
+        controlsItems +=ControlsItem ("use_button",screenControlsBinding.toggleUseButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
+            940, 250, 70)
+        controlsItems +=ControlsItem ("toggle_magic_button",screenControlsBinding.toggleMagicButton.setKeycode(KeyEvent.KEYCODE_CTRL_LEFT),
+            950, 390, 70)
+        controlsItems +=ControlsItem ("toggle_weapon_button",screenControlsBinding.toggleWeaponButton.setKeycode(KeyEvent.KEYCODE_TAB),
+            950, 530, 70)
 
         controlsItems.forEach {
             it.loadPrefs()

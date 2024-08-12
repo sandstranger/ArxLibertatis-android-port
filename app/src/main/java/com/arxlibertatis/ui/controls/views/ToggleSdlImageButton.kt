@@ -6,7 +6,7 @@ import android.view.MotionEvent
 import android.view.View
 import org.libsdl.app.SDLActivity
 
-class ToggleSdlImageButton (context: Context, attrs : AttributeSet)  : SDLImageButton(context, attrs) {
+open class ToggleSdlImageButton (context: Context, attrs : AttributeSet)  : SDLImageButton(context, attrs) {
 
     private var pressed : Boolean = false
 
@@ -16,13 +16,21 @@ class ToggleSdlImageButton (context: Context, attrs : AttributeSet)  : SDLImageB
         }
 
         if (!pressed){
-            SDLActivity.onNativeKeyDown(keyCode)
+            onPressed()
             pressed = true
         }
         else{
-            SDLActivity.onNativeKeyUp(keyCode)
+            onUnPressed()
             pressed = false
         }
         return true
+    }
+
+    protected open fun onPressed () {
+        SDLActivity.onNativeKeyDown(keyCode)
+    }
+
+    protected open fun onUnPressed () {
+        SDLActivity.onNativeKeyUp(keyCode)
     }
 }
