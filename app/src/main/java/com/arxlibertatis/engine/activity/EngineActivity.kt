@@ -63,8 +63,10 @@ class EngineActivity : SDLActivity () {
                 )
             )
 
-            val screenControlsManager = ScreenControlsManager(binding, this)
-            screenControlsManager.enableScreenControls()
+            binding.screenControlsRoot.post(Runnable {
+                val screenControlsManager = ScreenControlsManager(binding, this)
+                screenControlsManager.enableScreenControls()
+            })
         }
     }
 }

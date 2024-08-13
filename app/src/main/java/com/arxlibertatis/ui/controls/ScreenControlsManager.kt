@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowManager
 import android.view.WindowMetrics
 import android.widget.FrameLayout
+import android.widget.RelativeLayout
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.databinding.ScreenControlsBinding
 import com.arxlibertatis.ui.controls.views.SDLImageButton
@@ -197,7 +198,7 @@ class ScreenControlsManager(
     }
 
     fun editScreenControls() {
-        callback = ConfigureCallback(screenSize)
+        callback = ConfigureCallback(screenControlsBinding.screenControlsRoot)
         controlsItems.forEach {
             it.view.setOnTouchListener(callback)
 
@@ -310,8 +311,8 @@ class ScreenControlsManager(
 
         fun updateView() {
             val v = view
-            val realScreenWidth = this@ScreenControlsManager.screenSize.width
-            val realScreenHeight = this@ScreenControlsManager.screenSize.height
+            val realScreenWidth = (v.parent as View).width
+            val realScreenHeight = (v.parent as View).height
             val realX = x * realScreenWidth / VIRTUAL_SCREEN_WIDTH
             val realY = y * realScreenHeight / VIRTUAL_SCREEN_HEIGHT
 
@@ -368,7 +369,7 @@ class ScreenControlsManager(
 
     private data class ScreenSize(val width: Int, val height: Int)
 
-    private class ConfigureCallback(val screenSize: ScreenSize) : View.OnTouchListener {
+    private class ConfigureCallback(private val rootView : View) : View.OnTouchListener {
 
         var currentView: View? = null
         private var origX: Float = 0.0f
@@ -395,8 +396,8 @@ class ScreenControlsManager(
 
                     val el = view.tag as ControlsItem
                     el.changePosition(
-                        x * VIRTUAL_SCREEN_WIDTH / screenSize.width,
-                        y * VIRTUAL_SCREEN_HEIGHT / screenSize.height
+                        x * VIRTUAL_SCREEN_WIDTH / rootView.width,
+                        y * VIRTUAL_SCREEN_HEIGHT /rootView.height
                     )
                     el.updateView()
                 }
