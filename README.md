@@ -38,4 +38,4 @@ boost: https://github.com/boostorg
 
 zlib: https://www.zlib.net/
 
-Special thanks to @xyzz and @erz05 for posting the on-screen control code
+Special thanks to xyzz and erz05 for posting the on-screen control code
