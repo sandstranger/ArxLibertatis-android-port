@@ -19,7 +19,7 @@ Arx Libertatis for Android has the following system requirements:
 
 ## Building
 
-To get an APK file, open the `ArxLibertatis-android-port` directory in Android Studio and run the project.
+To get an APK file, clone this repository, open the `ArxLibertatis-android-port` directory in Android Studio and run the project.
 
 ## Credits
 This port using
