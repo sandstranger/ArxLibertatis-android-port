@@ -24,10 +24,10 @@ class ConfigureControlsActivity : AppCompatActivity() {
         val binding = ScreenControlsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.screenControlsRoot.post(Runnable {
+        binding.screenControlsRoot.post {
             screenControlsManager = ScreenControlsManager(binding, this)
             screenControlsManager.editScreenControls()
-        })
+        }
     }
 
     fun clickOpacityPlus(v: View) {
