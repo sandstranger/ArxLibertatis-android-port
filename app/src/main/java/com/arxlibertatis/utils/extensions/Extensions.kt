@@ -24,6 +24,12 @@ inline fun <reified T> Context.startActivity(finishParentActivity : Boolean = tr
     if (finishParentActivity && this is Activity) this.finish();
 }
 
+fun String?.toBoolean(): Boolean =
+    when(this) {
+        "0" -> false
+        else -> true
+    }
+
 fun Activity.requestExternalStoragePermission () {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         if (!Environment.isExternalStorageManager()) {

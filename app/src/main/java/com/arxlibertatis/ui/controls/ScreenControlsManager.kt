@@ -204,6 +204,23 @@ class ScreenControlsManager(
         }
     }
 
+    fun hideScreenControls (){
+        for (button in controlsItems){
+            button.view.visibility = View.GONE
+        }
+    }
+
+    fun showScreenControls (){
+        for (button in controlsItems){
+
+            if (button.view is SDLImageButton && button.view.isSpecialBtn && button.view.visibility == View.GONE){
+                continue
+            }
+
+            button.view.visibility = View.VISIBLE
+        }
+    }
+
     fun editScreenControls() {
         callback = ConfigureCallback(screenControlsBinding.screenControlsRoot)
         controlsItems.forEach {

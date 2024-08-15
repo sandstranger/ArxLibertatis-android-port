@@ -1,11 +1,10 @@
 package com.arxlibertatis.engine.activity
 
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.system.Os
 import android.view.ViewGroup
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.BuildConfig
-import com.arxlibertatis.R
 import com.arxlibertatis.databinding.ScreenControlsBinding
 import com.arxlibertatis.engine.debugJniLibsArray
 import com.arxlibertatis.engine.jniLibsArray
@@ -14,6 +13,12 @@ import com.arxlibertatis.engine.setFullscreen
 import com.arxlibertatis.ui.controls.ScreenControlsManager
 import com.arxlibertatis.utils.HIDE_SCREEN_CONTROLS_KEY
 import com.arxlibertatis.utils.MAIN_ENGINE_NATIVE_LIB
+import com.arxlibertatis.utils.extensions.toBoolean
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.libsdl.app.SDLActivity
 
 
@@ -28,11 +33,13 @@ class EngineActivity : SDLActivity () {
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
 
     private lateinit var screenControlsManager : ScreenControlsManager
+    private val screenControlsVisibilityUpdater = CoroutineScope(Dispatchers.Default)
+    private var needToShowControlsLastState : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
-        showScreenControls()
+        initScreenControls()
     }
 
     override fun onPause() {
@@ -48,10 +55,11 @@ class EngineActivity : SDLActivity () {
 
     override fun onDestroy() {
         super.onDestroy()
+        screenControlsVisibilityUpdater?.cancel()
         killEngine()
     }
 
-    private fun showScreenControls (){
+    private fun initScreenControls (){
         val hideScreenControls = PreferenceManager.getDefaultSharedPreferences(this)
             .getBoolean(HIDE_SCREEN_CONTROLS_KEY,false)
 
@@ -69,7 +77,28 @@ class EngineActivity : SDLActivity () {
             binding.screenControlsRoot.post {
                 screenControlsManager = ScreenControlsManager(binding, this)
                 screenControlsManager.enableScreenControls()
+
+                screenControlsVisibilityUpdater.launch {
+                    changeScreenControlsVisibility()
+                }
             }
+        }
+    }
+
+    private suspend fun changeScreenControlsVisibility(){
+        while (true){
+            var needToShowControls : Boolean = Os.getenv("SHOW_SCREEN_CONTROLS").toBoolean()
+            if (needToShowControls != needToShowControlsLastState){
+                this@EngineActivity.runOnUiThread {
+                    if (needToShowControls) {
+                        screenControlsManager.showScreenControls()
+                    } else {
+                        screenControlsManager.hideScreenControls()
+                    }
+                }
+            }
+            needToShowControlsLastState = needToShowControls
+            delay(200)
         }
     }
 }
