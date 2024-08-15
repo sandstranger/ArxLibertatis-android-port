@@ -27,6 +27,8 @@ class EngineActivity : SDLActivity () {
 
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
 
+    private lateinit var screenControlsManager : ScreenControlsManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ class EngineActivity : SDLActivity () {
 
     override fun onPause() {
         super.onPause()
+        screenControlsManager?.onPause()
         pauseSound()
     }
 
@@ -64,7 +67,7 @@ class EngineActivity : SDLActivity () {
             )
 
             binding.screenControlsRoot.post {
-                val screenControlsManager = ScreenControlsManager(binding, this)
+                screenControlsManager = ScreenControlsManager(binding, this)
                 screenControlsManager.enableScreenControls()
             }
         }

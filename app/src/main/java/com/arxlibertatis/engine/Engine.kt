@@ -9,6 +9,7 @@ import androidx.preference.PreferenceManager
 import com.arxlibertatis.engine.activity.EngineActivity
 import com.arxlibertatis.utils.ARX_DATA_PATH_KEY
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
+import com.arxlibertatis.utils.HIDE_SCREEN_CONTROLS_KEY
 import com.arxlibertatis.utils.extensions.startActivity
 
 internal val debugJniLibsArray= arrayOf("GL", "SDL2","freetyped","z","openal","arx")
@@ -30,6 +31,8 @@ fun killEngine() = Process.killProcess(Process.myPid())
 fun startEngine(context: Context) {
     val prefs = PreferenceManager.getDefaultSharedPreferences(context)
     val gamePath  = prefs.getString(GAME_FILES_SHARED_PREFS_KEY, "")
+    val hideScreenControls = prefs.getBoolean(HIDE_SCREEN_CONTROLS_KEY, false)
+    Os.setenv("HIDE_SCREEN_CONTROLS", hideScreenControls.toString().lowercase(), true)
     Os.setenv(ARX_DATA_PATH_KEY, gamePath, true)
     Os.setenv("LIBGL_ES", "2", true)
     context.startActivity<EngineActivity>()

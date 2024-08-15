@@ -20,10 +20,14 @@ open class ToggleSdlImageButton (context: Context, attrs : AttributeSet)  : SDLI
             pressed = true
         }
         else{
-            onUnPressed()
-            pressed = false
+            unPress()
         }
         return true
+    }
+
+    fun unPress (){
+        onUnPressed()
+        pressed = false;
     }
 
     protected open fun onPressed () {

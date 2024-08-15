@@ -281,7 +281,7 @@
         android:layout_gravity="right"
         android:src="@drawable/torch" />
 
-    <com.arxlibertatis.ui.controls.views.ToggleMouseSDLButton
+    <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
         android:id="@+id/toggle_use_button"
         android:layout_width="100dp"
         android:layout_height="100dp"

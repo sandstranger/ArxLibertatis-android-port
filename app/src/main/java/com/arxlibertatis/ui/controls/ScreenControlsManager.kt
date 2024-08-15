@@ -10,10 +10,10 @@ import android.view.View
 import android.view.WindowManager
 import android.view.WindowMetrics
 import android.widget.FrameLayout
-import android.widget.RelativeLayout
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.databinding.ScreenControlsBinding
 import com.arxlibertatis.ui.controls.views.SDLImageButton
+import com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
 
 
 const val VIRTUAL_SCREEN_WIDTH = 1024
@@ -31,7 +31,6 @@ class ScreenControlsManager(
     private var callback: ConfigureCallback? = null
     private val controlsItems = arrayListOf<ControlsItem>()
     private val specialButtons = arrayListOf<SDLImageButton>()
-    private val screenSize: ScreenSize = getScreenSize()
     private val joystickHolder: SDLJoystick = SDLJoystick(screenControlsBinding.joystick)
 
     init {
@@ -143,7 +142,7 @@ class ScreenControlsManager(
         )
         controlsItems += ControlsItem(
             "toggle_use_button",
-            screenControlsBinding.toggleUseButton.setKeycode(MIDDLE_MOUSE_BUTTON_ID),
+            screenControlsBinding.toggleUseButton.setKeycode(KeyEvent.KEYCODE_N),
             940,
             250,
             70
@@ -194,6 +193,14 @@ class ScreenControlsManager(
 
         controlsItems.forEach {
             it.loadPrefs()
+        }
+    }
+
+    fun onPause (){
+        for (item in controlsItems){
+            if (item.view is ToggleSdlImageButton){
+                item.view.unPress()
+            }
         }
     }
 
@@ -259,18 +266,6 @@ class ScreenControlsManager(
     fun resetItems() {
         controlsItems.forEach {
             it.resetPrefs()
-        }
-    }
-
-    private fun getScreenSize(): ScreenSize {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            val metrics: WindowMetrics =
-                activity.getSystemService(WindowManager::class.java).currentWindowMetrics
-            return ScreenSize(metrics.bounds.width(), metrics.bounds.height())
-        } else {
-            val displayMetrics = DisplayMetrics();
-            activity.windowManager.defaultDisplay.getMetrics(displayMetrics);
-            return ScreenSize(displayMetrics.widthPixels, displayMetrics.heightPixels)
         }
     }
 
