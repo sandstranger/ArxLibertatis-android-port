@@ -4,12 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Environment
-import android.provider.DocumentsContract
-import android.util.Log
-import androidx.documentfile.provider.DocumentFile
 import com.arxlibertatis.interfaces.SettingsFragmentMvpView
 import com.arxlibertatis.ui.activity.ConfigureControlsActivity
-import com.arxlibertatis.utils.ASFUriHelper.getPath
 import com.arxlibertatis.utils.GAME_FILES_FOLDER_NAME
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
 import com.arxlibertatis.utils.copyGameAssets
