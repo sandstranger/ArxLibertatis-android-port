@@ -13,7 +13,6 @@ import com.arxlibertatis.engine.setFullscreen
 import com.arxlibertatis.ui.controls.ScreenControlsManager
 import com.arxlibertatis.utils.HIDE_SCREEN_CONTROLS_KEY
 import com.arxlibertatis.utils.MAIN_ENGINE_NATIVE_LIB
-import com.arxlibertatis.utils.extensions.toBoolean
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
