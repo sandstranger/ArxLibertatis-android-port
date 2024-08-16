@@ -96,6 +96,9 @@ dependencies {
     implementation project(':sdl2:android-project:app')
     implementation project(':gl4es')
 
+    //material dialogs
+    implementation libs.files
+
     //dagger2
     implementation libs.dagger.android
     implementation libs.dagger.android.support

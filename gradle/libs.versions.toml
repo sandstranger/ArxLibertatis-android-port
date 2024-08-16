@@ -5,6 +5,7 @@ constraintlayout = "2.1.4"
 daggerAndroid = "2.51.1"
 daggerAndroidSupport = "2.51.1"
 daggerAndroidProcessor = "2.51.1"
+files = "3.3.0"
 fragmentKtx = "1.8.2"
 kotlin = "1.9.0"
 coreKtx = "1.13.1"
@@ -31,6 +32,7 @@ androidx-preference-ktx = { module = "androidx.preference:preference-ktx", versi
 dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "daggerAndroidProcessor" }
 dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "daggerAndroidSupport" }
 dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "daggerAndroid" }
+files = { module = "com.afollestad.material-dialogs:files", version.ref = "files" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }

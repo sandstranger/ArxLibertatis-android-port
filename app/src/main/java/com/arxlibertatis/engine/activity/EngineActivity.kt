@@ -28,6 +28,8 @@ class EngineActivity : SDLActivity () {
 
     private external fun pauseSound()
 
+    private external fun needToShowScreenControls () : Boolean
+
     override fun getMainSharedObject() = MAIN_ENGINE_NATIVE_LIB
 
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
@@ -87,7 +89,7 @@ class EngineActivity : SDLActivity () {
 
     private suspend fun changeScreenControlsVisibility(){
         while (true){
-            var needToShowControls : Boolean = Os.getenv("SHOW_SCREEN_CONTROLS").toBoolean()
+            var needToShowControls : Boolean = needToShowScreenControls()
             if (needToShowControls != needToShowControlsLastState){
                 this@EngineActivity.runOnUiThread {
                     if (needToShowControls) {
