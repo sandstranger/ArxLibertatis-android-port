@@ -1,6 +1,7 @@
 package com.arxlibertatis.ui.fragment
 
 import android.os.Bundle
+import android.os.Environment
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -27,7 +28,7 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView{
         val gameFilesPreference = findPreference<Preference>(GAME_FILES_SHARED_PREFS_KEY)
         gameFilesPreference?.setOnPreferenceClickListener {
             MaterialDialog(this.requireContext()).show {
-                folderChooser (this.context, initialDirectory = File("/storage/emulated/0/")) { _, folder ->
+                folderChooser (this.context, initialDirectory = File(Environment.getExternalStorageDirectory().absolutePath)) { _, folder ->
                     presenter.saveGamePath(folder.path,requireContext(),
                         this@SettingsFragment.preferenceScreen.sharedPreferences!!)
                 }
