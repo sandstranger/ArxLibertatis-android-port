@@ -82,6 +82,10 @@ class ScreenControlsManager(
             210, 120, 70
         )
         controlsItems += ControlsItem(
+            "console_button", screenControlsBinding.consoleButton.setKeycode(KeyEvent.KEYCODE_K),
+            280, 120, 70
+        )
+        controlsItems += ControlsItem(
             "hide_all_btns_button", screenControlsBinding.hideAllBtnsButton,
             450, 10, 70
         )
@@ -190,6 +194,9 @@ class ScreenControlsManager(
 
         screenControlsBinding.torchButton.isSpecialBtn = true
         specialButtons += screenControlsBinding.torchButton
+
+        screenControlsBinding.consoleButton.isSpecialBtn = true
+        specialButtons += screenControlsBinding.consoleButton
 
         controlsItems.forEach {
             it.loadPrefs()

@@ -56,7 +56,7 @@ class EngineActivity : SDLActivity () {
 
     override fun onDestroy() {
         super.onDestroy()
-        screenControlsVisibilityUpdater?.cancel()
+        screenControlsVisibilityUpdater.cancel()
         killEngine()
     }
 
@@ -88,7 +88,7 @@ class EngineActivity : SDLActivity () {
 
     private suspend fun changeScreenControlsVisibility(){
         while (true){
-            var needToShowControls : Boolean = needToShowScreenControls()
+            val needToShowControls = needToShowScreenControls()
             if (needToShowControls != needToShowControlsLastState){
                 this@EngineActivity.runOnUiThread {
                     if (needToShowControls) {

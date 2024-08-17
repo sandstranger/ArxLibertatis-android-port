@@ -281,6 +281,15 @@
         android:layout_gravity="right"
         android:src="@drawable/torch" />
 
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/console_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/console" />
+
     <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
         android:id="@+id/toggle_use_button"
         android:layout_width="100dp"
