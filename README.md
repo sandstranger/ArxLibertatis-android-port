@@ -8,7 +8,7 @@ Note: this port still in early development stage.
 Arx Libertatis for Android has the following system requirements:
 
 ### Minimum
-* Operating system: android 5 or later
+* Operating system: android 7 or later
 * Graphics: videocard, which supports gles 2 render
 * Memory: 2GB system RAM
 
