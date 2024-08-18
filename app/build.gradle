@@ -99,6 +99,7 @@ dependencies {
     //dagger2
     implementation libs.dagger.android
     implementation libs.dagger.android.support
+    implementation files('libs\\ini4j-0.5.5-SNAPSHOT.jar')
     kapt libs.dagger.android.processor
 
     //moxy
