@@ -82,9 +82,19 @@ private fun updateCfgIni(cfgIniFile: File, prefs: SharedPreferences) {
         }
     }
 
+    fun writeValue (sectionName : String, optionName : String, prefsName:String){
+        val valueToWrite = prefs.getString(prefsName, "")
+        if (!valueToWrite.isNullOrEmpty()) {
+            ini.put(sectionName, optionName, valueToWrite)
+            iniFileWasChanged = true
+        }
+    }
+
     writeValue("interface", "hud_scale")
     writeValue("interface", "cursor_scale")
     writeValue("interface", "font_size")
+    writeValue("language","string", "text_localization")
+    writeValue("language","audio", "audio_localization")
 
     if (iniFileWasChanged) {
         ini.store()

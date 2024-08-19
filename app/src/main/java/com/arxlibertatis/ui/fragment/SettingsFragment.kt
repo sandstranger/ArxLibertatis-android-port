@@ -64,7 +64,7 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
         super.onPause()
         preferenceManager.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
     }
-    
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu, menu)
@@ -93,11 +93,11 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
     override fun updatePreference (prefsKey : String) =
         updatePreference(findPreference(prefsKey)!!,prefsKey)
 
-    private fun updatePreference (preference: Preference, prefsKey: String){
-        preference.summary = preferenceScreen.sharedPreferences?.getString(prefsKey, "") ?: ""
-    }
-
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
         updatePreference(key!!)
+    }
+
+    private fun updatePreference (preference: Preference, prefsKey: String){
+        preference.summary = preferenceScreen.sharedPreferences?.getString(prefsKey, "") ?: ""
     }
 }

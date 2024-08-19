@@ -13,10 +13,26 @@
     <string name="hud_scaling">Hud scale</string>
     <string name="cursor_scaling">Cursor scale</string>
     <string name="font_size">Font size</string>
+    <string name="text_localization_title">Text localization</string>
+    <string name="audio_localization_title">Audio localization</string>
     <string name="btn_back">Back</string>
     <string name="btn_opacityPlus">Alpha+</string>
     <string name="btn_opacityMinus">Alpha-</string>
     <string name="btn_sizePlus">Size+</string>
     <string name="btn_sizeMinus">Size-</string>
     <string name="btn_resetControlsLayout">Reset to defaults</string>
+    <string name="text_localization_default_entry">english</string>
+
+    <string-array name="text_localization_entries">
+        <item>english</item>
+        <item>russian</item>
+        <item>francais</item>
+    </string-array>
+
+    <string-array name="audio_localization_entries">
+        <item>english</item>
+        <item>russian</item>
+        <item>deutsch</item>
+    </string-array>
+
 </resources>
