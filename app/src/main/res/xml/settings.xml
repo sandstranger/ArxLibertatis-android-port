@@ -1,29 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <PreferenceCategory
-        android:title="@string/general_settings">
+    <PreferenceCategory android:title="@string/general_settings">
         <Preference
             android:key="game_files"
             android:title="@string/game_files" />
     </PreferenceCategory>
 
-    <PreferenceCategory
-        android:title="@string/user_interface">
+    <PreferenceCategory android:title="@string/user_interface">
         <Preference
             android:key="screen_controls_settings"
             android:title="@string/configure_screen_controls" />
         <CheckBoxPreference
-            android:key="hide_screen_controls"
             android:defaultValue="false"
+            android:key="hide_screen_controls"
             android:title="@string/hide_screen_controls" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/graphics">
-    <EditTextPreference
-        android:key="custom_resolution"
-        android:title="@string/custom_resolution"
-        android:dialogTitle="@string/custom_resolution"
-        />
+        <EditTextPreference
+            android:dialogTitle="@string/custom_resolution"
+            android:key="custom_resolution"
+            android:title="@string/custom_resolution" />
+        <EditTextPreference
+            android:dialogTitle="@string/hud_scaling"
+            android:key="hud_scale"
+            android:title="@string/hud_scaling" />
+        <EditTextPreference
+            android:dialogTitle="@string/cursor_scaling"
+            android:key="cursor_scale"
+            android:title="@string/cursor_scaling" />
+        <EditTextPreference
+            android:dialogTitle="@string/font_size"
+            android:key="font_size"
+            android:title="@string/font_size" />
     </PreferenceCategory>
 </PreferenceScreen>

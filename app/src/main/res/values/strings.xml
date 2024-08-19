@@ -10,6 +10,9 @@
     <string name="ok_text">OK</string>
     <string name="can_not_start_game">cfg ini file does not exist, so the game cannot be launched</string>
     <string name="custom_resolution">Custom Resolution</string>
+    <string name="hud_scaling">Hud scale</string>
+    <string name="cursor_scaling">Cursor scale</string>
+    <string name="font_size">Font size</string>
     <string name="btn_back">Back</string>
     <string name="btn_opacityPlus">Alpha+</string>
     <string name="btn_opacityMinus">Alpha-</string>

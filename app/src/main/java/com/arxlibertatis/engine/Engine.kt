@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Process
 import android.system.Os
+import android.util.Log
 import android.view.View
 import androidx.preference.PreferenceManager
 import com.afollestad.materialdialogs.MaterialDialog
@@ -57,27 +58,37 @@ fun startEngine(context: Context) {
     context.startActivity<EngineActivity>()
 }
 
-private fun updateCfgIni (cfgIniFile : File, prefs: SharedPreferences){
+private fun updateCfgIni(cfgIniFile: File, prefs: SharedPreferences) {
     val ini = Wini(cfgIniFile)
     val customResolution = prefs.getString("custom_resolution", "")
     var iniFileWasChanged = false
-    if (!customResolution.isNullOrEmpty() && customResolution.contains(RESOLUTION_DELIMITER)){
+    if (!customResolution.isNullOrEmpty() && customResolution.contains(RESOLUTION_DELIMITER)) {
         try {
             val resolutionsArray = customResolution.split(RESOLUTION_DELIMITER)
-            val screenWidth = Integer.parseInt(resolutionsArray[0])
-            val screenHeight = Integer.parseInt(resolutionsArray[1])
-            SDLSurface.fixedWidth = screenWidth
-            SDLSurface.fixedHeight = screenHeight
-            ini.put("video","resolution", "\"$customResolution\"")
+            SDLSurface.fixedWidth = Integer.parseInt(resolutionsArray[0])
+            SDLSurface.fixedHeight = Integer.parseInt(resolutionsArray[1])
+            ini.put("video", "resolution", "\"$customResolution\"")
             iniFileWasChanged = true
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
 
-        }
-
-        if (iniFileWasChanged){
-            ini.store()
         }
     }
+
+    fun writeValue (sectionName : String, optionName : String){
+        val valueToWrite = prefs.getString(optionName, "")
+        if (!valueToWrite.isNullOrEmpty()) {
+            ini.put(sectionName, optionName, valueToWrite)
+            iniFileWasChanged = true
+        }
+    }
+
+    writeValue("interface", "hud_scale")
+    writeValue("interface", "cursor_scale")
+    writeValue("interface", "font_size")
+
+    if (iniFileWasChanged) {
+        ini.store()
+    }
 }
+
 

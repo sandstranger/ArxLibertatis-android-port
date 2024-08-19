@@ -19,7 +19,8 @@ import com.arxlibertatis.utils.extensions.startActivity
 import moxy.MvpView
 import moxy.presenter.InjectPresenter
 
-class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView{
+class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
+    SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val CHOOSE_DIRECTORY_REQUEST_CODE = 4321
 
@@ -46,9 +47,24 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView{
             true
         }
 
+        updatePreference("hud_scale")
+        updatePreference("custom_resolution")
+        updatePreference("cursor_scale")
+        updatePreference("font_size")
+
         setHasOptionsMenu(true)
     }
 
+    override fun onResume() {
+        super.onResume()
+        preferenceManager.sharedPreferences?.registerOnSharedPreferenceChangeListener(this)
+    }
+
+    override fun onPause() {
+        super.onPause()
+        preferenceManager.sharedPreferences?.unregisterOnSharedPreferenceChangeListener(this)
+    }
+    
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.menu, menu)
@@ -79,5 +95,9 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView{
 
     private fun updatePreference (preference: Preference, prefsKey: String){
         preference.summary = preferenceScreen.sharedPreferences?.getString(prefsKey, "") ?: ""
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
+        updatePreference(key!!)
     }
 }
