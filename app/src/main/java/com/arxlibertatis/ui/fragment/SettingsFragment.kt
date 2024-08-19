@@ -94,7 +94,9 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
         updatePreference(findPreference(prefsKey)!!,prefsKey)
 
     override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences?, key: String?) {
-        updatePreference(key!!)
+        if (key!="command_line") {
+            updatePreference(key!!)
+        }
     }
 
     private fun updatePreference (preference: Preference, prefsKey: String){

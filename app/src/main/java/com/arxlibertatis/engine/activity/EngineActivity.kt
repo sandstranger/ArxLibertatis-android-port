@@ -1,7 +1,9 @@
 package com.arxlibertatis.engine.activity
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.system.Os
+import android.util.Log
 import android.view.ViewGroup
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.BuildConfig
@@ -26,6 +28,7 @@ class EngineActivity : SDLActivity () {
     private lateinit var screenControlsManager : ScreenControlsManager
     private val screenControlsVisibilityUpdater = CoroutineScope(Dispatchers.Default)
     private var needToShowControlsLastState : Boolean = false
+    private lateinit var prefsManager : SharedPreferences
 
     private external fun resumeSound()
 
@@ -40,6 +43,7 @@ class EngineActivity : SDLActivity () {
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
+        prefsManager = PreferenceManager.getDefaultSharedPreferences(this)
         initScreenControls()
     }
 
@@ -60,9 +64,31 @@ class EngineActivity : SDLActivity () {
         killEngine()
     }
 
+    override fun getArguments(): Array<String> {
+        val commandLineArgs = prefsManager.getString("command_line", "")
+
+        if (commandLineArgs.isNullOrEmpty() || !commandLineArgs.contains("-")){
+            return super.getArguments()
+        }
+
+        try {
+            val args = arrayListOf<String>()
+
+            commandLineArgs.split(" ".toRegex()).forEach {
+                if (!it.isNullOrEmpty()){
+                        args +=it
+                }
+            }
+
+            return args.toTypedArray()
+        }
+        catch (e: Exception) {
+            return super.getArguments()
+        }
+    }
+
     private fun initScreenControls (){
-        val hideScreenControls = PreferenceManager.getDefaultSharedPreferences(this)
-            .getBoolean(HIDE_SCREEN_CONTROLS_KEY,false)
+        val hideScreenControls = prefsManager.getBoolean(HIDE_SCREEN_CONTROLS_KEY,false)
 
         if (!hideScreenControls) {
             val binding = ScreenControlsBinding.inflate(layoutInflater)
