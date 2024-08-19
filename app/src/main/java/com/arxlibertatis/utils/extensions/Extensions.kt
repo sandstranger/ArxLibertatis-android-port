@@ -10,8 +10,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
+import android.text.InputType
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.preference.EditTextPreference
 import com.arxlibertatis.BuildConfig
 
 inline fun <reified T> Context.startActivity(finishParentActivity : Boolean = true) where T : Activity {
@@ -22,6 +24,19 @@ inline fun <reified T> Context.startActivity(finishParentActivity : Boolean = tr
     startActivity(Intent(this, T::class.java))
 
     if (finishParentActivity && this is Activity) this.finish();
+}
+
+fun EditTextPreference.changeInputTypeToDecimal (){
+    this.setOnBindEditTextListener { editText ->
+        editText.inputType =
+            InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_FLAG_DECIMAL or InputType.TYPE_NUMBER_FLAG_SIGNED
+    }
+}
+
+fun EditTextPreference.setHint (hintId : Int){
+    this.setOnBindEditTextListener { editText ->
+        editText.setHint(hintId)
+    }
 }
 
 fun Activity.requestExternalStoragePermission () {

@@ -23,6 +23,7 @@
     <string name="btn_resetControlsLayout">Reset to defaults</string>
     <string name="text_localization_default_entry">english</string>
     <string name="command_line">Custom cmd args</string>
+    <string name="custom_resolution_hint">640x480</string>
 
     <string-array name="text_localization_entries">
         <item>english</item>

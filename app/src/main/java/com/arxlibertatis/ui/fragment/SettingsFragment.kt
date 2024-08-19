@@ -1,23 +1,25 @@
 package com.arxlibertatis.ui.fragment
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.content.Intent.createChooser
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
+import android.text.InputType
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.EditText
+import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import com.arxlibertatis.R
 import com.arxlibertatis.interfaces.SettingsFragmentMvpView
 import com.arxlibertatis.presenter.SettingsFragmentPresenter
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
-import com.arxlibertatis.utils.extensions.startActivity
-import moxy.MvpView
+import com.arxlibertatis.utils.extensions.changeInputTypeToDecimal
+import com.arxlibertatis.utils.extensions.setHint
 import moxy.presenter.InjectPresenter
+
 
 class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
     SharedPreferences.OnSharedPreferenceChangeListener {
@@ -47,10 +49,22 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
             true
         }
 
-        updatePreference("hud_scale")
-        updatePreference("custom_resolution")
-        updatePreference("cursor_scale")
-        updatePreference("font_size")
+        val customResolution = findPreference<EditTextPreference>("custom_resolution")
+        customResolution?.setHint(R.string.custom_resolution_hint)
+
+        val hudScale = findPreference<EditTextPreference>("hud_scale")
+        hudScale?.changeInputTypeToDecimal()
+
+        val cursorScale = findPreference<EditTextPreference>("cursor_scale")
+        cursorScale?.changeInputTypeToDecimal()
+
+        val fontSize = findPreference<EditTextPreference>("font_size")
+        fontSize?.changeInputTypeToDecimal()
+
+        updatePreference(customResolution!!, "custom_resolution")
+        updatePreference(hudScale!!, "hud_scale")
+        updatePreference(cursorScale!!,"cursor_scale")
+        updatePreference(fontSize!!,"font_size")
 
         setHasOptionsMenu(true)
     }
