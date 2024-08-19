@@ -1,8 +1,6 @@
 # Unofficical port of Arx Libertatis for Android
 This is an Android port of Arx Libertatis project found at https://github.com/arx/ArxLibertatis
 
-Note: this port still in early development stage.
-
 # System Requirements
 
 Arx Libertatis for Android has the following system requirements:
