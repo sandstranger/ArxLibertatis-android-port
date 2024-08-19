@@ -102,6 +102,8 @@ dependencies {
     implementation files('libs\\ini4j-0.5.5-SNAPSHOT.jar')
     kapt libs.dagger.android.processor
 
+    implementation libs.core
+
     //moxy
     implementation libs.moxy.androidx
     kapt libs.moxy.compiler

@@ -19,4 +19,11 @@
             android:title="@string/hide_screen_controls" />
     </PreferenceCategory>
 
+    <PreferenceCategory android:title="@string/graphics">
+    <EditTextPreference
+        android:key="custom_resolution"
+        android:title="@string/custom_resolution"
+        android:dialogTitle="@string/custom_resolution"
+        />
+    </PreferenceCategory>
 </PreferenceScreen>

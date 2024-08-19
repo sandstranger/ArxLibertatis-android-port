@@ -23,6 +23,10 @@ import org.libsdl.app.SDLActivity
 
 class EngineActivity : SDLActivity () {
 
+    private lateinit var screenControlsManager : ScreenControlsManager
+    private val screenControlsVisibilityUpdater = CoroutineScope(Dispatchers.Default)
+    private var needToShowControlsLastState : Boolean = false
+
     private external fun resumeSound()
 
     private external fun pauseSound()
@@ -32,10 +36,6 @@ class EngineActivity : SDLActivity () {
     override fun getMainSharedObject() = MAIN_ENGINE_NATIVE_LIB
 
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
-
-    private lateinit var screenControlsManager : ScreenControlsManager
-    private val screenControlsVisibilityUpdater = CoroutineScope(Dispatchers.Default)
-    private var needToShowControlsLastState : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullscreen(window.decorView)
