@@ -17,6 +17,7 @@ import com.arxlibertatis.engine.setFullscreen
 import com.arxlibertatis.ui.controls.ScreenControlsManager
 import com.arxlibertatis.utils.HIDE_SCREEN_CONTROLS_KEY
 import com.arxlibertatis.utils.MAIN_ENGINE_NATIVE_LIB
+import com.arxlibertatis.utils.extensions.displayInCutoutArea
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -46,10 +47,7 @@ class EngineActivity : SDLActivity () {
         setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
         prefsManager = PreferenceManager.getDefaultSharedPreferences(this)
-        val displayInCutout = prefsManager.getBoolean("display_cutout_area", false)
-        if (displayInCutout && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
-        }
+        displayInCutoutArea(prefsManager)
         initScreenControls()
     }
 

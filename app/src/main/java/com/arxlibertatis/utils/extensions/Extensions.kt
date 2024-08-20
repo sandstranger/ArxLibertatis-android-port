@@ -5,12 +5,14 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
 import android.text.InputType
+import android.view.WindowManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
@@ -36,6 +38,13 @@ fun EditTextPreference.changeInputTypeToDecimal (){
 fun EditTextPreference.setHint (hintId : Int){
     this.setOnBindEditTextListener { editText ->
         editText.setHint(hintId)
+    }
+}
+
+fun Activity.displayInCutoutArea (prefsManager: SharedPreferences){
+    val displayInCutout = prefsManager.getBoolean("display_cutout_area", false)
+    if (displayInCutout && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+        window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
     }
 }
 

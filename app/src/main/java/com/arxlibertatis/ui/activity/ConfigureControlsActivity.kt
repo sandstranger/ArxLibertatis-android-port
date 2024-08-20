@@ -6,10 +6,12 @@ import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.arxlibertatis.R
 import com.arxlibertatis.databinding.ScreenControlsBinding
 import com.arxlibertatis.engine.setFullscreen
 import com.arxlibertatis.ui.controls.ScreenControlsManager
+import com.arxlibertatis.utils.extensions.displayInCutoutArea
 
 private const val CHANGE_OPACITY_STEP = 0.1f
 private const val CHANGE_SIZE_STEP = 5
@@ -21,6 +23,7 @@ class ConfigureControlsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
+        displayInCutoutArea(PreferenceManager.getDefaultSharedPreferences(this))
         val binding = ScreenControlsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
