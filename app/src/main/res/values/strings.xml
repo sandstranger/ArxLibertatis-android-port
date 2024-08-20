@@ -5,6 +5,7 @@
     <string name="user_interface">User interface</string>
     <string name="copy_game_assets">Reset game assets</string>
     <string name="hide_screen_controls">Hide screen controls</string>
+    <string name="display_cutout_area">Display in cutout area</string>
     <string name="configure_screen_controls">Configure screen controls</string>
     <string name="graphics">Graphics</string>
     <string name="ok_text">OK</string>

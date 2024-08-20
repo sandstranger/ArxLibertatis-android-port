@@ -15,6 +15,7 @@ import androidx.preference.Preference
 import com.arxlibertatis.R
 import com.arxlibertatis.interfaces.SettingsFragmentMvpView
 import com.arxlibertatis.presenter.SettingsFragmentPresenter
+import com.arxlibertatis.utils.CUSTOM_RESOLUTION_PREFS_KEY
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
 import com.arxlibertatis.utils.extensions.changeInputTypeToDecimal
 import com.arxlibertatis.utils.extensions.setHint
@@ -49,7 +50,7 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
             true
         }
 
-        val customResolution = findPreference<EditTextPreference>("custom_resolution")
+        val customResolution = findPreference<EditTextPreference>(CUSTOM_RESOLUTION_PREFS_KEY)
         customResolution?.setHint(R.string.custom_resolution_hint)
 
         val hudScale = findPreference<EditTextPreference>("hud_scale")
@@ -61,7 +62,7 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
         val fontSize = findPreference<EditTextPreference>("font_size")
         fontSize?.changeInputTypeToDecimal()
 
-        updatePreference(customResolution!!, "custom_resolution")
+        updatePreference(customResolution!!, CUSTOM_RESOLUTION_PREFS_KEY)
         updatePreference(hudScale!!, "hud_scale")
         updatePreference(cursorScale!!,"cursor_scale")
         updatePreference(fontSize!!,"font_size")
@@ -114,6 +115,11 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
     }
 
     private fun updatePreference (preference: Preference, prefsKey: String){
-        preference.summary = preferenceScreen.sharedPreferences?.getString(prefsKey, "") ?: ""
+        try {
+            preference.summary = preferenceScreen.sharedPreferences?.getString(prefsKey, "") ?: ""
+        }
+        catch (e: Exception){
+
+        }
     }
 }

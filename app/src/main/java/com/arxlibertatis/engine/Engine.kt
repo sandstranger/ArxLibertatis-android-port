@@ -11,6 +11,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.arxlibertatis.R
 import com.arxlibertatis.engine.activity.EngineActivity
 import com.arxlibertatis.utils.ARX_DATA_PATH_KEY
+import com.arxlibertatis.utils.CUSTOM_RESOLUTION_PREFS_KEY
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
 import com.arxlibertatis.utils.HIDE_SCREEN_CONTROLS_KEY
 import com.arxlibertatis.utils.extensions.startActivity
@@ -60,7 +61,7 @@ fun startEngine(context: Context) {
 
 private fun updateCfgIni(cfgIniFile: File, prefs: SharedPreferences) {
     val ini = Wini(cfgIniFile)
-    val customResolution = prefs.getString("custom_resolution", "")
+    val customResolution = prefs.getString(CUSTOM_RESOLUTION_PREFS_KEY, "")
     var iniFileWasChanged = false
     if (!customResolution.isNullOrEmpty() && customResolution.contains(RESOLUTION_DELIMITER)) {
         try {

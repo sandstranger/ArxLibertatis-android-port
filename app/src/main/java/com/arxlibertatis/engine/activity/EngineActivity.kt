@@ -1,10 +1,12 @@
 package com.arxlibertatis.engine.activity
 
 import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
 import android.system.Os
 import android.util.Log
 import android.view.ViewGroup
+import android.view.WindowManager
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.BuildConfig
 import com.arxlibertatis.databinding.ScreenControlsBinding
@@ -44,6 +46,10 @@ class EngineActivity : SDLActivity () {
         setFullscreen(window.decorView)
         super.onCreate(savedInstanceState)
         prefsManager = PreferenceManager.getDefaultSharedPreferences(this)
+        val displayInCutout = prefsManager.getBoolean("display_cutout_area", false)
+        if (displayInCutout && Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            window.attributes.layoutInDisplayCutoutMode = WindowManager.LayoutParams.LAYOUT_IN_DISPLAY_CUTOUT_MODE_SHORT_EDGES
+        }
         initScreenControls()
     }
 
