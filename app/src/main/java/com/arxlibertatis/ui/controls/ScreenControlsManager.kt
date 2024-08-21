@@ -86,6 +86,18 @@ class ScreenControlsManager(
             280, 120, 70
         )
         controlsItems += ControlsItem(
+            "number_1_button", screenControlsBinding.number1Button.setKeycode(KeyEvent.KEYCODE_1),
+            360, 130, 50
+        )
+        controlsItems += ControlsItem(
+            "number_2_button", screenControlsBinding.number2Button.setKeycode(KeyEvent.KEYCODE_2),
+            420, 130, 50
+        )
+        controlsItems += ControlsItem(
+            "number_3_button", screenControlsBinding.number3Button.setKeycode(KeyEvent.KEYCODE_3),
+            480, 130, 50
+        )
+        controlsItems += ControlsItem(
             "hide_all_btns_button", screenControlsBinding.hideAllBtnsButton,
             450, 10, 70
         )
@@ -197,6 +209,15 @@ class ScreenControlsManager(
 
         screenControlsBinding.consoleButton.isSpecialBtn = true
         specialButtons += screenControlsBinding.consoleButton
+
+        screenControlsBinding.number1Button.isSpecialBtn = true
+        specialButtons += screenControlsBinding.number1Button
+
+        screenControlsBinding.number2Button.isSpecialBtn = true
+        specialButtons += screenControlsBinding.number2Button
+
+        screenControlsBinding.number3Button.isSpecialBtn = true
+        specialButtons += screenControlsBinding.number3Button
 
         controlsItems.forEach {
             it.loadPrefs()

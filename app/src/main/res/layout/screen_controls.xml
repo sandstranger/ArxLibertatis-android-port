@@ -290,6 +290,33 @@
         android:layout_gravity="right"
         android:src="@drawable/console" />
 
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/number_1_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/number_1" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/number_2_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/number_2" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/number_3_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/number_3" />
+
     <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
         android:id="@+id/toggle_use_button"
         android:layout_width="100dp"
