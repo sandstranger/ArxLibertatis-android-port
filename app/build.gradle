@@ -4,9 +4,24 @@ plugins {
 }
 apply plugin: 'kotlin-kapt'
 
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('release-keystore.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
 android {
     namespace 'com.arxlibertatis'
     compileSdk versions.target_sdk
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
 
     defaultConfig {
         applicationId "com.arxlibertatis"
@@ -52,12 +67,13 @@ android {
 
         release {
             buildConfigField 'boolean', 'DEBUG', 'false'
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
 
         debug {
             jniDebuggable true
             debuggable true
+            signingConfig signingConfigs.debug
         }
     }
     compileOptions {
