@@ -1,0 +1,2 @@
+ This is unofficial Arx Libertatis android port. Arx Libertatis is an improved, cross-platform and open source engine for Arx Fatalis,
+  a 2002 first-person role-playing game / dungeon crawler / immersive sim developed by Arkane Studios.
