@@ -91,6 +91,10 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
                 presenter.copyGameAssets(requireContext(), preferenceScreen.sharedPreferences!!)
                 true
             }
+            R.id.privacy_policy -> {
+                presenter.redirectToPrivacyPolicy(requireContext()!!)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
