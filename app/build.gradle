@@ -96,10 +96,11 @@ dependencies {
     implementation project(':sdl2:android-project:app')
     implementation project(':gl4es')
 
+    implementation libs.ini4j
+
     //dagger2
     implementation libs.dagger.android
     implementation libs.dagger.android.support
-    implementation files('libs\\ini4j-0.5.5-SNAPSHOT.jar')
     kapt libs.dagger.android.processor
 
     implementation libs.core
