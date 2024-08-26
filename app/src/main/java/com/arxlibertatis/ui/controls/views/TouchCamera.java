@@ -72,7 +72,6 @@ public class TouchCamera extends View {
                     pointerFingerId = event.getPointerId(i);
                     x = event.getX(i) / mWidth;
                     y = event.getY(i) / mHeight;
-                    Log.v("POSITION Y", Float.toString(y));
                     p = event.getPressure(i);
                     if (p > 1.0f) {
                         // may be larger than 1.0f on some devices
