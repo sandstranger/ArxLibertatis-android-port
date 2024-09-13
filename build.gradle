@@ -3,7 +3,7 @@ buildscript {
     ext.versions = [
             min_sdk  : 24,
             target_sdk : 34,
-            ndk_version : '26.3.11579264',
+            ndk_version : '27.1.12297006',
             build_tools_version : '35.0.0',
             native_android_platform_version : 24
     ]
