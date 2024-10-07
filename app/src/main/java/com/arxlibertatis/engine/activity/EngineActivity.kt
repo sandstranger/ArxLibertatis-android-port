@@ -3,6 +3,7 @@ package com.arxlibertatis.engine.activity
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.ViewGroup
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.BuildConfig
@@ -38,8 +39,6 @@ class EngineActivity : SDLActivity () {
 
     private external fun needToShowScreenControls () : Boolean
 
-    private external fun saveConfig()
-
     override fun getMainSharedObject() = MAIN_ENGINE_NATIVE_LIB
 
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
@@ -57,7 +56,6 @@ class EngineActivity : SDLActivity () {
         super.onPause()
         screenControlsManager.onPause()
         pauseSound()
-        saveConfig()
     }
 
     override fun onResume() {
