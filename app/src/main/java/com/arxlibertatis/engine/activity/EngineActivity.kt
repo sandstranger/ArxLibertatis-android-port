@@ -1,12 +1,9 @@
 package com.arxlibertatis.engine.activity
 
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
-import android.system.Os
-import android.util.Log
+import android.os.Environment
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.BuildConfig
 import com.arxlibertatis.databinding.ScreenControlsBinding
@@ -24,6 +21,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.libsdl.app.SDLActivity
+import java.io.File
 
 
 class EngineActivity : SDLActivity () {
@@ -32,6 +30,7 @@ class EngineActivity : SDLActivity () {
     private val screenControlsVisibilityUpdater = CoroutineScope(Dispatchers.Default)
     private var needToShowControlsLastState : Boolean = false
     private lateinit var prefsManager : SharedPreferences
+    private lateinit var logcatProcess : Process
 
     private external fun resumeSound()
 
@@ -45,6 +44,7 @@ class EngineActivity : SDLActivity () {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setFullscreen(window.decorView)
+        logcatProcess = enableLogcat()
         super.onCreate(savedInstanceState)
         prefsManager = PreferenceManager.getDefaultSharedPreferences(this)
         displayInCutoutArea(prefsManager)
@@ -65,6 +65,7 @@ class EngineActivity : SDLActivity () {
     override fun onDestroy() {
         super.onDestroy()
         screenControlsVisibilityUpdater.cancel()
+        logcatProcess.destroy()
         killEngine()
     }
 
@@ -131,5 +132,20 @@ class EngineActivity : SDLActivity () {
             needToShowControlsLastState = needToShowControls
             delay(200)
         }
+    }
+
+    private fun enableLogcat() : Process {
+        val pathToLog = "${Environment.getExternalStorageDirectory()}/Arx"
+
+        val logcatFile = File(pathToLog)
+        if (logcatFile.exists()) {
+            logcatFile.delete()
+        }
+
+        val processBuilder = ProcessBuilder()
+        val commandToExecute = arrayOf("/system/bin/sh", "-c", "logcat *:W -d -f $pathToLog")
+        processBuilder.command(*commandToExecute)
+        processBuilder.redirectErrorStream(true)
+        return processBuilder.start()
     }
 }
