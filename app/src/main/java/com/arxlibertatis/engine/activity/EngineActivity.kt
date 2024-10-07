@@ -38,6 +38,8 @@ class EngineActivity : SDLActivity () {
 
     private external fun needToShowScreenControls () : Boolean
 
+    private external fun saveConfig()
+
     override fun getMainSharedObject() = MAIN_ENGINE_NATIVE_LIB
 
     override fun getLibraries() = if (BuildConfig.DEBUG) debugJniLibsArray else jniLibsArray
@@ -53,8 +55,9 @@ class EngineActivity : SDLActivity () {
 
     override fun onPause() {
         super.onPause()
-        screenControlsManager?.onPause()
+        screenControlsManager.onPause()
         pauseSound()
+        saveConfig()
     }
 
     override fun onResume() {
