@@ -81,7 +81,7 @@ class EngineActivity : SDLActivity () {
             val args = arrayListOf<String>()
 
             commandLineArgs.split(" ".toRegex()).forEach {
-                if (!it.isNullOrEmpty()){
+                if (it.isNotEmpty()){
                         args +=it
                 }
             }
