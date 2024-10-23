@@ -128,7 +128,7 @@
         android:layout_gravity="right"
         android:src="@drawable/load" />
 
-    <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
         android:id="@+id/toggle_magic_button"
         android:layout_width="100dp"
         android:layout_height="100dp"

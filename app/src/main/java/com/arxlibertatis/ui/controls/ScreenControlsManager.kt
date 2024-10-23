@@ -158,7 +158,7 @@ class ScreenControlsManager(
             70
         )
         controlsItems += ControlsItem(
-            "toggle_magic_button",
+            "magic_button",
             screenControlsBinding.toggleMagicButton.setKeycode(KeyEvent.KEYCODE_CTRL_LEFT),
             950,
             390,
@@ -215,14 +215,6 @@ class ScreenControlsManager(
 
         controlsItems.forEach {
             it.loadPrefs()
-        }
-    }
-
-    fun onPause (){
-        for (item in controlsItems){
-            if (item.view is ToggleSdlImageButton){
-                item.view.unPress()
-            }
         }
     }
 

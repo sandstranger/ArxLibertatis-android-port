@@ -53,7 +53,6 @@ class EngineActivity : SDLActivity () {
 
     override fun onPause() {
         super.onPause()
-        screenControlsManager.onPause()
         pauseSound()
     }
 
