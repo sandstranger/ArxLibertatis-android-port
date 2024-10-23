@@ -34,6 +34,10 @@ class EngineActivity : SDLActivity () {
 
     private external fun resumeSound()
 
+    private external fun resumeSpellsSound()
+
+    private external fun pauseSpellsSound()
+
     private external fun pauseSound()
 
     private external fun needToShowScreenControls () : Boolean
@@ -53,11 +57,13 @@ class EngineActivity : SDLActivity () {
 
     override fun onPause() {
         super.onPause()
+        pauseSpellsSound()
         pauseSound()
     }
 
     override fun onResume() {
         super.onResume()
+        resumeSpellsSound()
         resumeSound()
     }
 
