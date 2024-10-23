@@ -55,11 +55,11 @@ fun startEngine(context: Context) {
         return
     }
 
-    updateCfgIni(cfgIniFile, prefs)
+    updateCfgIni(cfgIniFile, prefs, hideScreenControls)
     context.startActivity<EngineActivity>()
 }
 
-private fun updateCfgIni(cfgIniFile: File, prefs: SharedPreferences) {
+private fun updateCfgIni(cfgIniFile: File, prefs: SharedPreferences, hideScreenControls : Boolean) {
     val ini = Wini(cfgIniFile)
     val customResolution = prefs.getString(CUSTOM_RESOLUTION_PREFS_KEY, "")
     var iniFileWasChanged = false
@@ -96,6 +96,7 @@ private fun updateCfgIni(cfgIniFile: File, prefs: SharedPreferences) {
     writeValue("interface", "font_size")
     writeValue("language","string", "text_localization")
     writeValue("language","audio", "audio_localization")
+    ini.put("key","action_combine_k0",if (hideScreenControls) "Button1" else "Button3" )
 
     if (iniFileWasChanged) {
         ini.store()

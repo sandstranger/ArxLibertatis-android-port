@@ -1,14 +1,9 @@
 package com.arxlibertatis.ui.controls
 
-import android.app.Activity
 import android.graphics.Color
-import android.os.Build
-import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
-import android.view.WindowManager
-import android.view.WindowMetrics
 import android.widget.FrameLayout
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.databinding.ScreenControlsBinding
@@ -24,8 +19,7 @@ private const val MIDDLE_MOUSE_BUTTON_ID = 2
 private const val RIGHT_MOUSE_BUTTON_ID = 3
 
 class ScreenControlsManager(
-    private val screenControlsBinding: ScreenControlsBinding,
-    private val activity: Activity
+    private val screenControlsBinding: ScreenControlsBinding
 ) {
 
     private var callback: ConfigureCallback? = null

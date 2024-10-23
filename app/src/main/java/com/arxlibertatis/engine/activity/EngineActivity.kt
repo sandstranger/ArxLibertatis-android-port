@@ -3,7 +3,6 @@ package com.arxlibertatis.engine.activity
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.os.Environment
-import android.util.Log
 import android.view.ViewGroup
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.BuildConfig
@@ -108,7 +107,7 @@ class EngineActivity : SDLActivity () {
             )
 
             binding.screenControlsRoot.post {
-                screenControlsManager = ScreenControlsManager(binding, this)
+                screenControlsManager = ScreenControlsManager(binding)
                 screenControlsManager.enableScreenControls()
 
                 screenControlsVisibilityUpdater.launch {
