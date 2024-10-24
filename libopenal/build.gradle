@@ -22,9 +22,9 @@ android {
                 arguments "-DANDROID_PLATFORM=android-$versions.native_android_platform_version",
                         "-DALSOFT_EXAMPLES=OFF" ,"-DALSOFT_TESTS=OFF" ,"-DALSOFT_UTILS=OFF",
                         "-DALSOFT_NO_CONFIG_UTIL=ON", "-DALSOFT_BACKEND_OPENSL=ON" ,"-DALSOFT_BACKEND_WAVE=OFF",
-                        "-DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O3 -ffast-math -flto=thin -DNDEBUG",
-                        "-DCMAKE_C_FLAGS_RELWITHDEBINFO=-O3 -ffast-math -flto=thin -DNDEBUG",
-                        "-DCMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO=-flto=thin -Wl,-plugin-opt=-emulated-tls -fuse-ld=lld"
+                        "-DCMAKE_CXX_FLAGS=-O3 -ffast-math -flto=thin -DNDEBUG",
+                        "-DCMAKE_C_FLAGS=-O3 -ffast-math -flto=thin -DNDEBUG",
+                        "-DCMAKE_SHARED_LINKER_FLAGS=-flto=thin -Wl,-plugin-opt=-emulated-tls -fuse-ld=lld"
 
             }
         }
