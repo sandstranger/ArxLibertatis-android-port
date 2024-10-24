@@ -43,7 +43,7 @@ android {
             cmake {
                 arguments"-DANDROID_PLATFORM=android-$versions.native_android_platform_version",
                         "-DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O3 -ffast-math -flto=thin -DNDEBUG",
-                        "-DCMAKE_CXX_FLAGS_RELWITHDEBINFO=-O3 -ffast-math -flto=thin -DNDEBUG",
+                        "-DCMAKE_C_FLAGS_RELWITHDEBINFO=-O3 -ffast-math -flto=thin -DNDEBUG",
                         "-DCMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO=-flto=thin -Wl,-plugin-opt=-emulated-tls -fuse-ld=lld"
 
             }
