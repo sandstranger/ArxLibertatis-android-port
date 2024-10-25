@@ -72,7 +72,7 @@ class ScreenControlsManager(
             70
         )
         controlsItems += ControlsItem(
-            "torch_potion_button", screenControlsBinding.torchButton.setKeycode(KeyEvent.KEYCODE_J),
+            "torch_potion_button", screenControlsBinding.torchButton.setKeycode(KeyEvent.KEYCODE_T),
             210, 120, 70
         )
         controlsItems += ControlsItem(
