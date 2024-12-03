@@ -1,0 +1,2 @@
+fix audio issues, when application is going to pause.
+fix application crash, after application resume, when screen controls are hidden

@@ -9,6 +9,7 @@
         android:id="@+id/touchCamera"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal|center_vertical"
         android:visibility="gone" />
 
     <LinearLayout
@@ -127,7 +128,7 @@
         android:layout_gravity="right"
         android:src="@drawable/load" />
 
-    <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
         android:id="@+id/toggle_magic_button"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -190,7 +191,7 @@
         android:layout_gravity="right"
         android:src="@drawable/drop_weapon" />
 
-    <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
         android:id="@+id/walk_button"
         android:layout_width="100dp"
         android:layout_height="100dp"
@@ -289,6 +290,33 @@
         android:background="@null"
         android:layout_gravity="right"
         android:src="@drawable/console" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/number_1_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/number_1" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/number_2_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/number_2" />
+
+    <com.arxlibertatis.ui.controls.views.SDLImageButton
+        android:id="@+id/number_3_button"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="fitCenter"
+        android:background="@null"
+        android:layout_gravity="right"
+        android:src="@drawable/number_3" />
 
     <com.arxlibertatis.ui.controls.views.ToggleSdlImageButton
         android:id="@+id/toggle_use_button"

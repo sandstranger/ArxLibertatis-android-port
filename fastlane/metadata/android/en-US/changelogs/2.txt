@@ -1,0 +1,1 @@
+Fix touch camera at customs resolutions

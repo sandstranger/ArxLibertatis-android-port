@@ -1,14 +1,9 @@
 package com.arxlibertatis.ui.controls
 
-import android.app.Activity
 import android.graphics.Color
-import android.os.Build
-import android.util.DisplayMetrics
 import android.view.KeyEvent
 import android.view.MotionEvent
 import android.view.View
-import android.view.WindowManager
-import android.view.WindowMetrics
 import android.widget.FrameLayout
 import androidx.preference.PreferenceManager
 import com.arxlibertatis.databinding.ScreenControlsBinding
@@ -24,8 +19,7 @@ private const val MIDDLE_MOUSE_BUTTON_ID = 2
 private const val RIGHT_MOUSE_BUTTON_ID = 3
 
 class ScreenControlsManager(
-    private val screenControlsBinding: ScreenControlsBinding,
-    private val activity: Activity
+    private val screenControlsBinding: ScreenControlsBinding
 ) {
 
     private var callback: ConfigureCallback? = null
@@ -78,12 +72,24 @@ class ScreenControlsManager(
             70
         )
         controlsItems += ControlsItem(
-            "torch_potion_button", screenControlsBinding.torchButton.setKeycode(KeyEvent.KEYCODE_J),
+            "torch_potion_button", screenControlsBinding.torchButton.setKeycode(KeyEvent.KEYCODE_T),
             210, 120, 70
         )
         controlsItems += ControlsItem(
             "console_button", screenControlsBinding.consoleButton.setKeycode(KeyEvent.KEYCODE_K),
             280, 120, 70
+        )
+        controlsItems += ControlsItem(
+            "number_1_button", screenControlsBinding.number1Button.setKeycode(KeyEvent.KEYCODE_1),
+            360, 130, 50
+        )
+        controlsItems += ControlsItem(
+            "number_2_button", screenControlsBinding.number2Button.setKeycode(KeyEvent.KEYCODE_2),
+            420, 130, 50
+        )
+        controlsItems += ControlsItem(
+            "number_3_button", screenControlsBinding.number3Button.setKeycode(KeyEvent.KEYCODE_3),
+            480, 130, 50
         )
         controlsItems += ControlsItem(
             "hide_all_btns_button", screenControlsBinding.hideAllBtnsButton,
@@ -152,7 +158,7 @@ class ScreenControlsManager(
             70
         )
         controlsItems += ControlsItem(
-            "toggle_magic_button",
+            "magic_button",
             screenControlsBinding.toggleMagicButton.setKeycode(KeyEvent.KEYCODE_CTRL_LEFT),
             950,
             390,
@@ -198,16 +204,17 @@ class ScreenControlsManager(
         screenControlsBinding.consoleButton.isSpecialBtn = true
         specialButtons += screenControlsBinding.consoleButton
 
+        screenControlsBinding.number1Button.isSpecialBtn = true
+        specialButtons += screenControlsBinding.number1Button
+
+        screenControlsBinding.number2Button.isSpecialBtn = true
+        specialButtons += screenControlsBinding.number2Button
+
+        screenControlsBinding.number3Button.isSpecialBtn = true
+        specialButtons += screenControlsBinding.number3Button
+
         controlsItems.forEach {
             it.loadPrefs()
-        }
-    }
-
-    fun onPause (){
-        for (item in controlsItems){
-            if (item.view is ToggleSdlImageButton){
-                item.view.unPress()
-            }
         }
     }
 

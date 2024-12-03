@@ -1,13 +1,9 @@
 package com.arxlibertatis.ui.activity
 
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.MotionEvent
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
-import com.arxlibertatis.R
 import com.arxlibertatis.databinding.ScreenControlsBinding
 import com.arxlibertatis.engine.setFullscreen
 import com.arxlibertatis.ui.controls.ScreenControlsManager
@@ -28,7 +24,7 @@ class ConfigureControlsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.screenControlsRoot.post {
-            screenControlsManager = ScreenControlsManager(binding, this)
+            screenControlsManager = ScreenControlsManager(binding)
             screenControlsManager.editScreenControls()
         }
     }

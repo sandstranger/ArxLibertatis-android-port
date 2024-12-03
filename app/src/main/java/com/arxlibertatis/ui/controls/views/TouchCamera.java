@@ -1,15 +1,18 @@
 package com.arxlibertatis.ui.controls.views;
 
-import static org.libsdl.app.SDLSurface.mHeight;
-import static org.libsdl.app.SDLSurface.mWidth;
+import static org.libsdl.app.SDLSurface.fixedHeight;
+import static org.libsdl.app.SDLSurface.fixedWidth;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import org.libsdl.app.SDLActivity;
 
 public class TouchCamera extends View {
+
+    private float mWidth, mHeight;
 
     public TouchCamera(Context context) {
         super(context);
@@ -17,6 +20,30 @@ public class TouchCamera extends View {
 
     public TouchCamera(Context context, AttributeSet attrs) {
         super(context, attrs);
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        if (fixedWidth > 0) {
+            float myAspect = 1.0f * fixedWidth / fixedHeight;
+            float resultWidth = widthSize;
+            float resultHeight = resultWidth / myAspect;
+            if (resultHeight > heightSize) {
+                resultHeight = heightSize;
+                resultWidth = resultHeight * myAspect;
+            }
+
+            mWidth = resultWidth;
+            mHeight = resultHeight;
+            setMeasuredDimension((int) resultWidth, (int) resultHeight);
+        } else {
+            mWidth = widthSize;
+            mHeight = heightSize;
+            setMeasuredDimension(widthSize, heightSize);
+        }
     }
 
     @Override

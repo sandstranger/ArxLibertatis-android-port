@@ -1,4 +1,4 @@
-# Unofficical port of Arx Libertatis for Android
+# Unofficial port of Arx Libertatis for Android
 This is an Android port of Arx Libertatis project found at https://github.com/arx/ArxLibertatis
 
 # System Requirements
@@ -6,13 +6,13 @@ This is an Android port of Arx Libertatis project found at https://github.com/ar
 Arx Libertatis for Android has the following system requirements:
 
 ### Minimum
-* Operating system: android 7 or later
-* Graphics: videocard, which supports gles 2 render
+* Operating system: Android 7 or later
+* Graphics: videocard, which supports GLES 2 render
 * Memory: 2GB system RAM
 
 ### Recommended
-* Operating system: android 12 or later
-* Graphics: videocard, which supports gles 2 render
+* Operating system: Android 12 or later
+* Graphics: videocard, which supports GLES 2 render
 * Memory: 4GB system RAM or more
 
 ## Building

@@ -1,0 +1,1 @@
+critical bug was fixed that config was deleted after application was killed
