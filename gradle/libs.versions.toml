@@ -36,7 +36,6 @@ core = { module = "com.afollestad.material-dialogs:core", version.ref = "core" }
 dagger-android-processor = { module = "com.google.dagger:dagger-android-processor", version.ref = "daggerAndroidProcessor" }
 dagger-android-support = { module = "com.google.dagger:dagger-android-support", version.ref = "daggerAndroidSupport" }
 dagger-android = { module = "com.google.dagger:dagger-android", version.ref = "daggerAndroid" }
-filepicker = { module = "io.github.tutorialsandroid:filepicker", version.ref = "filepicker" }
 ini4j = { module = "org.ini4j:ini4j", version.ref = "ini4j" }
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }

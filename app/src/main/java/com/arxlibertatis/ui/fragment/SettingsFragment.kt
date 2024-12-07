@@ -1,19 +1,15 @@
 package com.arxlibertatis.ui.fragment
 
-import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.Intent.createChooser
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
+import android.os.Environment
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import com.arxlibertatis.R
@@ -23,11 +19,8 @@ import com.arxlibertatis.utils.CUSTOM_RESOLUTION_PREFS_KEY
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
 import com.arxlibertatis.utils.extensions.changeInputTypeToDecimal
 import com.arxlibertatis.utils.extensions.setHint
-import com.developer.filepicker.model.DialogConfigs
-import com.developer.filepicker.model.DialogProperties
-import com.developer.filepicker.view.FilePickerDialog
+import com.obsez.android.lib.filechooser.ChooserDialog
 import moxy.presenter.InjectPresenter
-import java.io.File
 
 
 class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
@@ -35,10 +28,6 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
 
     private val CHOOSE_DIRECTORY_REQUEST_CODE = 4321
     private val CHOOSE_DIRECTORY_TEXT = "Choose directory"
-    private val REQUEST_STORAGE_PERMISSIONS: Int = 123
-    private val REQUEST_MEDIA_PERMISSIONS: Int = 456
-    private val readPermission = Manifest.permission.READ_EXTERNAL_STORAGE
-    private val writePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE
     @InjectPresenter
     lateinit var presenter: SettingsFragmentPresenter
 
@@ -50,24 +39,15 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
         gameFilesPreference?.setOnPreferenceClickListener {
             val isTelevision =
                 requireContext().packageManager.hasSystemFeature(PackageManager.FEATURE_LEANBACK)
-            if (!isTelevision) {
-                val file = File(DialogConfigs.DEFAULT_DIR)
-                val properties = DialogProperties()
-                properties.selection_mode = DialogConfigs.SINGLE_MODE;
-                properties.selection_type = DialogConfigs.DIR_SELECT;
-                properties.root = file
-                properties.error_dir = file
-                properties.offset = file
-
-                val dialog = FilePickerDialog(requireContext(), properties)
-                dialog.setTitle(CHOOSE_DIRECTORY_TEXT)
-                dialog.setDialogSelectionListener {
-                    val directory = it[0]
-                    presenter.saveGamePath(directory,requireContext(),this.preferenceScreen.sharedPreferences!!)
-                }
-
-                checkPermissions(dialog)
-
+            if (isTelevision) {
+                ChooserDialog(this.requireContext())
+                    .withFilter(true, false)
+                    .withStartFile(Environment.getExternalStorageDirectory().absolutePath) // to handle the result(s)
+                    .withChosenListener(ChooserDialog.Result { path, _ ->
+                        presenter.saveGamePath(path,requireContext(),preferenceScreen.sharedPreferences!!)
+                    })
+                    .build()
+                    .show()
             } else {
                 with(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)) {
                     addCategory(Intent.CATEGORY_DEFAULT)
@@ -158,60 +138,6 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
         }
         catch (e: Exception){
 
-        }
-    }
-
-    private fun checkPermissions(filePickerDialog: FilePickerDialog) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            //As the device is Android 13 and above so I want the permission of accessing Audio, Images, Videos
-            //You can ask permission according to your requirements what you want to access.
-            val audioPermission = Manifest.permission.READ_MEDIA_AUDIO
-            val imagesPermission = Manifest.permission.READ_MEDIA_IMAGES
-            val videoPermission = Manifest.permission.READ_MEDIA_VIDEO
-            // Check for permissions and request them if needed
-            if (ContextCompat.checkSelfPermission(
-                    this.requireContext(),
-                    audioPermission
-                ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    this.requireContext(), imagesPermission
-                ) == PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(
-                    this.requireContext(), videoPermission
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                // You have the permissions, you can proceed with your media file operations.
-                //Showing dialog when Show Dialog button is clicked.
-                filePickerDialog.show()
-            } else {
-                // You don't have the permissions. Request them.
-                ActivityCompat.requestPermissions(
-                    this.requireActivity(),
-                    arrayOf<String>(audioPermission, imagesPermission, videoPermission),
-                    REQUEST_MEDIA_PERMISSIONS
-                )
-            }
-        } else {
-            //Android version is below 13 so we are asking normal read and write storage permissions
-            // Check for permissions and request them if needed
-            if (ContextCompat.checkSelfPermission(
-                    this.requireContext(),
-                    readPermission
-                ) == PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(
-                    this.requireContext(),
-                    writePermission
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                // You have the permissions, you can proceed with your file operations.
-                // Show the file picker dialog when needed
-                filePickerDialog.show()
-            } else {
-                // You don't have the permissions. Request them.
-                ActivityCompat.requestPermissions(
-                    this.requireActivity(),
-                    arrayOf<String>(readPermission, writePermission),
-                    REQUEST_STORAGE_PERMISSIONS
-                )
-            }
         }
     }
 }

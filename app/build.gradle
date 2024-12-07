@@ -116,6 +116,9 @@ dependencies {
     implementation project(':sdl2:android-project:app')
     implementation project(':gl4es')
 
+    //directory-picker for Android TV
+    implementation project(':directory-picker')
+
     implementation libs.ini4j
 
     //dagger2
@@ -124,8 +127,6 @@ dependencies {
     kapt libs.dagger.android.processor
 
     implementation libs.core
-
-    implementation libs.filepicker
 
     //moxy
     implementation libs.moxy.androidx
