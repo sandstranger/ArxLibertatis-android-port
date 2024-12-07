@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Intent
 import android.content.Intent.createChooser
 import android.content.SharedPreferences
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.text.InputType
+import android.os.Environment
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
-import android.widget.EditText
 import androidx.preference.EditTextPreference
 import androidx.preference.Preference
 import com.arxlibertatis.R
@@ -19,6 +19,7 @@ import com.arxlibertatis.utils.CUSTOM_RESOLUTION_PREFS_KEY
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
 import com.arxlibertatis.utils.extensions.changeInputTypeToDecimal
 import com.arxlibertatis.utils.extensions.setHint
+import com.obsez.android.lib.filechooser.ChooserDialog
 import moxy.presenter.InjectPresenter
 
 
@@ -26,7 +27,7 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
     SharedPreferences.OnSharedPreferenceChangeListener {
 
     private val CHOOSE_DIRECTORY_REQUEST_CODE = 4321
-
+    private val CHOOSE_DIRECTORY_TEXT = "Choose directory"
     @InjectPresenter
     lateinit var presenter: SettingsFragmentPresenter
 
@@ -36,14 +37,31 @@ class SettingsFragment : MvpAppCompatFragment(), SettingsFragmentMvpView,
 
         val gameFilesPreference = findPreference<Preference>(GAME_FILES_SHARED_PREFS_KEY)
         gameFilesPreference?.setOnPreferenceClickListener {
-            with(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)) {
-                addCategory(Intent.CATEGORY_DEFAULT)
-                startActivityForResult(createChooser(this, "Choose directory"),
-                    CHOOSE_DIRECTORY_REQUEST_CODE)
+            val isTelevision =
+                requireContext().packageManager.hasSystemFeature(PackageManager.FEATURE_LEANBACK)
+            if (isTelevision) {
+                ChooserDialog(this.requireContext())
+                    .withFilter(true, false)
+                    .withStartFile(Environment.getExternalStorageDirectory().absolutePath) // to handle the result(s)
+                    .withChosenListener(ChooserDialog.Result { path, _ ->
+                        presenter.saveGamePath(path,requireContext(),preferenceScreen.sharedPreferences!!)
+                    })
+                    .build()
+                    .show()
+            } else {
+                with(Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)) {
+                    addCategory(Intent.CATEGORY_DEFAULT)
+                    startActivityForResult(
+                        createChooser(this, CHOOSE_DIRECTORY_TEXT),
+                        CHOOSE_DIRECTORY_REQUEST_CODE
+                    )
+                }
             }
+
             true
         }
         updatePreference(gameFilesPreference!!,GAME_FILES_SHARED_PREFS_KEY)
+
 
         findPreference<Preference>("screen_controls_settings")?.setOnPreferenceClickListener {
             presenter.onConfigureScreenControlsClicked(requireContext())

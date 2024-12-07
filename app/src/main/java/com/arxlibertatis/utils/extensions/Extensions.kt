@@ -49,30 +49,20 @@ fun Activity.displayInCutoutArea (prefsManager: SharedPreferences){
 }
 
 fun Activity.requestExternalStoragePermission () {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        if (!Environment.isExternalStorageManager()) {
-            val uri = Uri.parse("package:${BuildConfig.APPLICATION_ID}")
-            this.startActivity(
-                Intent(
-                    Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION,
-                    uri
-                )
-            )
-        }
-    } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
         if (ContextCompat.checkSelfPermission(
                 this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                Manifest.permission.READ_EXTERNAL_STORAGE
             ) != PackageManager.PERMISSION_GRANTED
         ) {
             if (!ActivityCompat.shouldShowRequestPermissionRationale(
                     this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                    Manifest.permission.READ_EXTERNAL_STORAGE
                 )
             ) {
                 ActivityCompat.requestPermissions(
                     this,
-                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 23
+                    arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE), 23
                 )
             }
         }

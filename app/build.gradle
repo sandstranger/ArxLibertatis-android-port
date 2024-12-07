@@ -27,8 +27,8 @@ android {
         applicationId "com.arxlibertatis"
         minSdk versions.min_sdk
         targetSdk versions.target_sdk
-        versionCode 7
-        versionName '1.3.4.1'
+        versionCode 8
+        versionName '1.3.5'
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -80,9 +80,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    dataBinding {
+        enabled = true
+    }
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     buildFeatures {
         compose true
         buildConfig true
@@ -111,6 +115,9 @@ dependencies {
     implementation project(':zlib')
     implementation project(':sdl2:android-project:app')
     implementation project(':gl4es')
+
+    //directory-picker for Android TV
+    implementation project(':directory-picker')
 
     implementation libs.ini4j
 
