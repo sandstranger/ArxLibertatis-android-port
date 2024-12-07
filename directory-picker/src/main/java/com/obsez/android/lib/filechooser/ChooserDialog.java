@@ -38,7 +38,6 @@ import com.example.directory_picker.R;
 import com.obsez.android.lib.filechooser.internals.ExtFileFilter;
 import com.obsez.android.lib.filechooser.internals.FileUtil;
 import com.obsez.android.lib.filechooser.internals.RegexFileFilter;
-import com.obsez.android.lib.filechooser.permissions.PermissionsUtil;
 import com.obsez.android.lib.filechooser.tool.DirAdapter;
 import com.obsez.android.lib.filechooser.tool.RootFile;
 
@@ -900,7 +899,6 @@ public class ChooserDialog implements AdapterView.OnItemClickListener, DialogInt
     @Nullable
     View _newFolderView;
     boolean _enableMultiple;
-    private PermissionsUtil.OnPermissionListener _permissionListener;
     private boolean _cancelOnTouchOutside;
     boolean _enableDpad = true;
     Button _neutralBtn;
