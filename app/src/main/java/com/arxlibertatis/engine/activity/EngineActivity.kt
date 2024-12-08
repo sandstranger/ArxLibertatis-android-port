@@ -32,6 +32,14 @@ class EngineActivity : SDLActivity () {
     private lateinit var prefsManager : SharedPreferences
     private lateinit var logcatProcess : Process
 
+    private external fun resumeSound()
+
+    private external fun resumeSpellsSound()
+
+    private external fun pauseSpellsSound()
+
+    private external fun pauseSound()
+
     private external fun needToShowScreenControls () : Boolean
 
     override fun getMainSharedObject() = MAIN_ENGINE_NATIVE_LIB
@@ -45,6 +53,18 @@ class EngineActivity : SDLActivity () {
         prefsManager = PreferenceManager.getDefaultSharedPreferences(this)
         displayInCutoutArea(prefsManager)
         initScreenControls()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        pauseSpellsSound()
+        pauseSound()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        resumeSpellsSound()
+        resumeSound()
     }
 
     override fun onDestroy() {
