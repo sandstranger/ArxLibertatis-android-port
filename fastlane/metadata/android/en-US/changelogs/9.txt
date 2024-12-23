@@ -1,0 +1,1 @@
+allow to use internal folder for cache /sdcard/Android/data/com.arxlibertatis/files/Arx

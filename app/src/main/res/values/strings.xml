@@ -5,6 +5,7 @@
     <string name="user_interface">User interface</string>
     <string name="copy_game_assets">Reset game assets</string>
     <string name="hide_screen_controls">Hide screen controls</string>
+    <string name="internal_memory">Use internal folder for cache (/sdcard/Android/data/com.arxlibertatis/files/Arx)</string>
     <string name="display_cutout_area">Display in cutout area</string>
     <string name="configure_screen_controls">Configure screen controls</string>
     <string name="graphics">Graphics</string>

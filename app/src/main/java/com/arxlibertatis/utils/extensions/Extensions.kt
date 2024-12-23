@@ -17,6 +17,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.preference.EditTextPreference
 import com.arxlibertatis.BuildConfig
+import java.io.File
 
 inline fun <reified T> Context.startActivity(finishParentActivity : Boolean = true) where T : Activity {
     val i = Intent(this, T::class.java)
@@ -38,6 +39,16 @@ fun EditTextPreference.changeInputTypeToDecimal (){
 fun EditTextPreference.setHint (hintId : Int){
     this.setOnBindEditTextListener { editText ->
         editText.setHint(hintId)
+    }
+}
+
+fun Context.getInternalPathToCache() =
+    this.getExternalFilesDir(null)?.absolutePath + "/Arx"
+
+fun Context.createInternalPathToCache(){
+    val file = File(this.getInternalPathToCache())
+    if (!file.exists()){
+        file.mkdirs()
     }
 }
 

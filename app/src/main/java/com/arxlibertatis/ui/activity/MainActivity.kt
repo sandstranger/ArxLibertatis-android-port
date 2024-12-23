@@ -5,6 +5,7 @@ import com.arxlibertatis.R
 import com.arxlibertatis.databinding.MainActivityBinding
 import com.arxlibertatis.presenter.MainActivityPresenter
 import com.arxlibertatis.ui.fragment.SettingsFragment
+import com.arxlibertatis.utils.extensions.createInternalPathToCache
 import moxy.MvpAppCompatActivity
 import moxy.MvpView
 import moxy.presenter.InjectPresenter
@@ -21,7 +22,7 @@ internal class MainActivity : MvpAppCompatActivity(), MvpView {
         binding.startGameButton.setOnClickListener {
             presenter.onStartGameBtnClicked(this@MainActivity)
         }
-
+        this.createInternalPathToCache()
         presenter.requestExternalStorage(this)
         changeFragment()
     }

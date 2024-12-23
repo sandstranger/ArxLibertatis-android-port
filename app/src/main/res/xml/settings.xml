@@ -26,6 +26,10 @@
             android:title="@string/command_line"
             android:dialogTitle="@string/command_line"
             />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="internal_memory"
+            android:title="@string/internal_memory" />
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/user_interface">

@@ -14,6 +14,8 @@ import com.arxlibertatis.utils.ARX_DATA_PATH_KEY
 import com.arxlibertatis.utils.CUSTOM_RESOLUTION_PREFS_KEY
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
 import com.arxlibertatis.utils.HIDE_SCREEN_CONTROLS_KEY
+import com.arxlibertatis.utils.INTERNAL_MEMORY_PATH_TO_CACHE_KEY
+import com.arxlibertatis.utils.extensions.getInternalPathToCache
 import com.arxlibertatis.utils.extensions.startActivity
 import org.ini4j.Wini
 import org.libsdl.app.SDLSurface
@@ -39,7 +41,8 @@ fun killEngine() = Process.killProcess(Process.myPid())
 
 fun startEngine(context: Context) {
     val prefs = PreferenceManager.getDefaultSharedPreferences(context)
-    val gamePath  = prefs.getString(GAME_FILES_SHARED_PREFS_KEY, "")
+    val gamePath  = if (prefs.getBoolean(INTERNAL_MEMORY_PATH_TO_CACHE_KEY,false)) context.getInternalPathToCache() else
+        prefs.getString(GAME_FILES_SHARED_PREFS_KEY, "")
     val hideScreenControls = prefs.getBoolean(HIDE_SCREEN_CONTROLS_KEY, false)
     Os.setenv("HIDE_SCREEN_CONTROLS", hideScreenControls.toString().lowercase(), true)
     Os.setenv(ARX_DATA_PATH_KEY, gamePath, true)
@@ -71,7 +74,6 @@ private fun updateCfgIni(cfgIniFile: File, prefs: SharedPreferences, hideScreenC
             ini.put("video", "resolution", "\"$customResolution\"")
             iniFileWasChanged = true
         } catch (e: Exception) {
-
         }
     }
 

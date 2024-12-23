@@ -8,7 +8,10 @@ import com.arxlibertatis.interfaces.SettingsFragmentMvpView
 import com.arxlibertatis.ui.activity.ConfigureControlsActivity
 import com.arxlibertatis.utils.GAME_FILES_FOLDER_NAME
 import com.arxlibertatis.utils.GAME_FILES_SHARED_PREFS_KEY
+import com.arxlibertatis.utils.INTERNAL_MEMORY_PATH_TO_CACHE_KEY
 import com.arxlibertatis.utils.copyGameAssets
+import com.arxlibertatis.utils.extensions.createInternalPathToCache
+import com.arxlibertatis.utils.extensions.getInternalPathToCache
 import com.arxlibertatis.utils.extensions.startActivity
 import moxy.InjectViewState
 import moxy.MvpPresenter
@@ -47,6 +50,14 @@ class SettingsFragmentPresenter : MvpPresenter<SettingsFragmentMvpView>() {
     }
 
     fun copyGameAssets(context: Context, preferences: SharedPreferences) {
+        val useInternalMemoryCache = preferences.getBoolean(INTERNAL_MEMORY_PATH_TO_CACHE_KEY,false)
+
+        if (useInternalMemoryCache){
+            context.createInternalPathToCache()
+            copyGameAssets(context, GAME_FILES_FOLDER_NAME, context.getInternalPathToCache())
+            return
+        }
+
         val currentGamePath = preferences.getString(GAME_FILES_SHARED_PREFS_KEY, "")
 
         if (currentGamePath.isNullOrEmpty()) {

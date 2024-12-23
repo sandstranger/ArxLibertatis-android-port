@@ -7,6 +7,7 @@ import com.arxlibertatis.databinding.MainActivityBinding
 import com.arxlibertatis.databinding.TvActivityBinding
 import com.arxlibertatis.engine.startEngine
 import com.arxlibertatis.ui.fragment.SettingsFragment
+import com.arxlibertatis.utils.extensions.createInternalPathToCache
 import com.arxlibertatis.utils.extensions.requestExternalStoragePermission
 
 class TVActivity : AppCompatActivity() {
@@ -19,7 +20,7 @@ class TVActivity : AppCompatActivity() {
         binding.startGameButton.setOnClickListener {
             startEngine(this)
         }
-
+        this.createInternalPathToCache()
         requestExternalStoragePermission()
         changeFragment()
     }
