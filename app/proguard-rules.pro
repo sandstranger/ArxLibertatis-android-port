@@ -19,3 +19,15 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-dontobfuscate
+
+# Prevents crashing when using Wini
+-keep class org.ini4j.spi.IniParser
+-keep class org.ini4j.spi.IniBuilder
+-keep class org.ini4j.spi.IniFormatter
+-keep class org.ini4j.Wini
+-keep class org.libsdl.app.** { *; }
+-keepclassmembers class org.libsdl.app.SDLActivity {
+    public static <methods>;
+}
