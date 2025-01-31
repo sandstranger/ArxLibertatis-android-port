@@ -18,7 +18,8 @@ android {
         }
         externalNativeBuild {
             ndkBuild {
-                arguments build_flags.ndk_build_args
+                arguments += build_flags.ndk_build_args
+                arguments += build_flags.arguments
                 cFlags  = build_flags.common_c_flags
                 cppFlags = build_flags.common_cpp_flags
             }

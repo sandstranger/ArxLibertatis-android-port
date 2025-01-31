@@ -47,6 +47,7 @@ fun startEngine(context: Context) {
     Os.setenv("HIDE_SCREEN_CONTROLS", hideScreenControls.toString().lowercase(), true)
     Os.setenv(ARX_DATA_PATH_KEY, gamePath, true)
     Os.setenv("LIBGL_ES", "2", true)
+    Os.setenv("SDL_VIDEO_GL_DRIVER", "libGL.so", true)
 
     val cfgIniFile = File("$gamePath/cfg.ini")
 

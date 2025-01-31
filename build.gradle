@@ -9,6 +9,7 @@ buildscript {
     ]
 
     ext.build_flags = [
+            arguments : "-j${Runtime.getRuntime().availableProcessors()}",
             common_c_flags : ["-O3","-flto=thin","-ffast-math"],
             common_cpp_flags : ["-O3" ,"-flto=thin", "-std=c++17","-ffast-math"],
             ndk_build_args : "APP_PLATFORM=android-$versions.native_android_platform_version"
